@@ -13,7 +13,6 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     username = db.Column(db.String(40), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    bio = db.Column(db.String(255), nullable=True)
     profileImageUrl = db.Column(db.String(255), nullable=True)
 
     reviews = db.relationship('Review', backref='user', cascade='all, delete-orphan')
