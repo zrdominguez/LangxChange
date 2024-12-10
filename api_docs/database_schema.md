@@ -24,7 +24,10 @@
 | lang        | string    | not null              |
 | summary     | string    | not null              |
 | author      | string    | not null              |
+| publisher   | string    | not null              |
+| publishDate | datetime  | not null              |
 | genre       | string    | not null              |
+| difficulty  | string    | not null              |
 | avgRating   | decimal   |                       |
 | createdAt   | datetime  | not null              |
 | updatedAt   | datetime  | not null              |
@@ -48,7 +51,7 @@
 | ----------- | --------- | --------------------- |
 | bookId      | integer   | not null, foreign key |
 | collectionId| integer   | not null, foreign key |
-| amount      | integer   |                       |
+| count       | integer   |                       |
 | createdAt   | datetime  | not null              |
 
 - `bookId` references `books` table

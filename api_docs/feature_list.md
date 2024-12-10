@@ -13,12 +13,16 @@ by: Zechariah Dominguez
 * Logged-out users are directed to a landing page displaying all books.
 
 ---
+## 2. Books
 
-## 2. Collections
+* Logged-in and logged-out users can view all books
+
+---
+## 3. Collections
 
 * Logged-in users can create new collections with language preference.
 * Users can edit and delete their own collections.
-* All users (logged in or logged out) can browse all books.
+* Logged-in users can browse all books in their collections.
 
 ---
 
@@ -37,7 +41,7 @@ by: Zechariah Dominguez
 
 ---
 
-## 3. Reviews
+## 4. Reviews
 
 * Logged-in users can post reviews on books.
 * Users can edit and delete their own reviews.
@@ -58,7 +62,7 @@ by: Zechariah Dominguez
 
 ---
 
-## 4. Bonus Features
+## 5. Bonus Features
 
 ### Search Functionality
 * Users can search for books using keywords and view relevant search results.

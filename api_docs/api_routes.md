@@ -28,7 +28,6 @@ Users can log in using their email or username.
       "id": 1,
       "username": "username",
       "email": "user@example.com",
-      "bio": "example bio here", //might delete
       "profileImageUrl": "exampleprofile.url",
       "createdAt": "2024-10-30 23:51:27",
       "updatedAt": "2024-10-30 23:51:27",
@@ -97,7 +96,6 @@ Users can create a new account by signing up.
       "artistName": "desired_artistName",
       "username": "desired_username",
       "email": "user@example.com",
-      "bio": "", //might delete
       "profileImageUrl": "",
       "createdAt": "2024-11-01 02:12:32",
       "updatedAt": "2024-11-01 02:12:32",
@@ -134,7 +132,6 @@ Users can retrieve their own user information.
       "id": 1,
       "username": "current_username",
       "email": "current_user@example.com",
-      "bio": "Current user's bio", //might delete if decide to not do a user profile page
       "profileImageUrl": "currentprofile.url",
       "createdAt": "2024-10-30 23:51:27",
       "updatedAt": "2024-10-30 23:51:27",
@@ -153,14 +150,14 @@ Users can retrieve their own user information.
 
 ## Books
 
-### Get all Books
+### Get Books by Language
 
 Users should be able to view all Books.
 
 - **Require authentication**: false
 - **Request**
   - **Method**: GET
-  - **Route path**: /api/books
+  - **Route path**: /api/books/eng
   - **Body**: none
 - **Successful Response**
 
@@ -202,11 +199,13 @@ Return details of a Book specified by its id.
       "bookId": 1,
       "name": "BookName",
       "author": "Author",
+      "publisher": "Publisher",
+      "publishDate": "2024-10-29 18:38:09.043894",
       "lang": "English",
       "genre": "Mystery",
       "avgRating": 3,
+      "difficulty": "Beginner",
       "summary": "Description Here",
-      "publishDate": "2024-10-29 18:38:09.043894",
       "imageUrl": "image.url",
       "createdAt": "2024-10-29 18:38:09.043894",
       "updatedAt": "2024-10-29 18:38:09.043894"
@@ -250,7 +249,7 @@ Users should be able to create a Collection.
         "collectionName": "CollectionName",
         "userId": 1,
         "lang": "English",
-        "amount": 0,
+        "count": 0,
         "books":[
         //where books will go
           {}
@@ -366,6 +365,7 @@ Users should be able to view all Books added to their Collection.
     {
       "collection": {
         "id": 1,
+        "collectionName": "CollectionName",
         "books": [
           {
             "bookId": 1,
