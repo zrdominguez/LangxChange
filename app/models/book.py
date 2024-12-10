@@ -10,10 +10,12 @@ class Book(db.Model):
   name = db.Column(db.String, nullable=False)
   lang = db.Column(db.String, nullable=False)
   summary = db.Column(db.String, nullable=False)
+  publisher = db.Column(db.String, nullable=False)
   author = db.Column(db.String, nullable=False)
   genre = db.Column(db.String, nullable=False)
   avgRating = db.Column(db.Decimal, nullable=True)
   imgUrl = db.Column(db.String, nullable=True)
+  difficulty = db.Column(db.String, nullable=False)
   createdAt = db.Column(db.DateTime, default=datetime.now, nullable=False)
   updatedAt = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 
