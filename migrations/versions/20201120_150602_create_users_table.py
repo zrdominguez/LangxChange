@@ -60,7 +60,7 @@ def upgrade():
     op.create_table('collections_books',
     sa.Column('bookId', sa.Integer(), nullable=False),
     sa.Column('collectionId', sa.Integer(), nullable=False),
-    sa.Column('amount', sa.Integer(), nullable=False, server_default="1"),
+    sa.Column('count', sa.Integer(), nullable=False, server_default="1"),
     sa.Column('createdAt', sa.DateTime(), nullable=False),
     sa.Column('updatedAt', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['bookId'], ['books.id']),

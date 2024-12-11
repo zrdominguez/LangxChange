@@ -1,10 +1,11 @@
+from .association import collections_books
 from .db import db, environment, SCHEMA
 from datetime import datetime
 
 class Book(db.Model):
   __tablename__ = 'books'
 
- if environment == "production":
+  if environment == "production":
     __table_args__ = {'schema': SCHEMA}
 
   id = db.Column(db.Integer, primary_key=True)
@@ -15,7 +16,7 @@ class Book(db.Model):
   publishDate = db.Column(db.DateTime, nullable=False)
   author = db.Column(db.String, nullable=False)
   genre = db.Column(db.JSON, nullable=False)
-  avgRating = db.Column(db.Decimal, nullable=True)
+  avgRating = db.Column(db.Numeric, nullable=True)
   difficulty = db.Column(db.String, nullable=False)
   imgUrl = db.Column(db.String, nullable=True)
   difficulty = db.Column(db.String, nullable=False)

@@ -10,5 +10,4 @@ collections_books = db.Table(
 )
 
 if environment == "production":
-  carts_products.schema = SCHEMA
-  wishlists_products.schema = SCHEMA
+  collections_books.schema = SCHEMA
