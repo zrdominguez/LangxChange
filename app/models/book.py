@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA
+from datetime import datetime
 
 class Book(db.Model):
   __tablename__ = 'books'

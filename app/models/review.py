@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from datetime import datetime
 
 class Review(db.Model):
   __tablename__ = 'reviews'
@@ -10,6 +11,7 @@ class Review(db.Model):
   review = db.Column(db.String, nullable=False)
   bookId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('books.id')), nullable=False)
   userId = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+  score = db.Column(db.Integer, nullable=False)
   createdAt = db.Column(db.DateTime, default=datetime.now, nullable=False)
   updatedAt = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 

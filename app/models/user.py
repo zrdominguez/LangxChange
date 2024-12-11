@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -14,6 +15,8 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profileImageUrl = db.Column(db.String(255), nullable=True)
+    createdAt = db.Column(db.DateTime, default=datetime.now, nullable=False)
+    updatedAt = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 
     reviews = db.relationship('Review', backref='user', cascade='all, delete-orphan')
 
