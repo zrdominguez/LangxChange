@@ -159,7 +159,7 @@ Users should be able to view all Books.
 - **Require authentication**: false
 - **Request**
   - **Method**: GET
-  - **Route path**: /api/books/eng
+  - **Route path**: /api/books/:lang
   - **Body**: none
 - **Successful Response**
 
@@ -222,6 +222,7 @@ Return details of a Book specified by its id.
       "message": "Book not found!"
     }
     ```
+## Collections
 
 ### Create a collection
 

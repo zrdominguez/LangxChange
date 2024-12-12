@@ -31,8 +31,11 @@ class Book(db.Model):
       'name': self.name,
       'lang': self.lang,
       'summary': self.summary,
+      'publisher': self.publisher,
+      'publishDate': self.publishDate,
       'author': self.author,
       'genre': self.genre,
-      'avgRating': self.avgRating,
-      'imgUrl': self.imgUrl
+      'avgRating': str(round(self.avgRating,2)),
+      'imgUrl': self.imgUrl,
+      'difficulty': self.difficulty
     }
