@@ -41,7 +41,8 @@ Users can log in using their email or username.
 
 ```json
 {
-  "message": "Login failed. Please check your credentials and try again."
+  "credentials": "Login failed. Please check your credentials and try again.",
+  "password": ["Password was incorrect.", "No such user exists."]
 }
 ```
 
@@ -108,7 +109,8 @@ Users can create a new account by signing up.
   - **Body**:
     ```json
     {
-      "message": "Username or email already exists."
+      "email": "Email address is already in use.",
+      "username":"Username is already in use."
     }
     ```
 
