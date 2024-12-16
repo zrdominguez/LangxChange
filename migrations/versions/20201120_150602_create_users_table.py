@@ -71,13 +71,12 @@ def upgrade():
     sa.Column('review', sa.String(length=2000), nullable=False),
     sa.Column('bookId', sa.Integer(), nullable=False),
     sa.Column('userId', sa.Integer(), nullable=False),
+    sa.Column('rating', sa.Integer(), nullable=False),
     sa.Column('createdAt', sa.DateTime(), nullable=False),
     sa.Column('updatedAt', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['userId'], ['users.id']),
     sa.ForeignKeyConstraint(['bookId'], ['books.id']),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('userId'),
-    sa.UniqueConstraint('bookId')
     )
     # ### end Alembic commands ###qqqqqqqqq
 

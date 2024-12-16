@@ -16,7 +16,7 @@ class Book(db.Model):
   publishDate = db.Column(db.DateTime, nullable=False)
   author = db.Column(db.String, nullable=False)
   genre = db.Column(db.JSON, nullable=False)
-  avgRating = db.Column(db.Numeric, nullable=True)
+  avgRating = db.Column(db.Float, nullable=True)
   difficulty = db.Column(db.String, nullable=False)
   imgUrl = db.Column(db.String, nullable=True)
   difficulty = db.Column(db.String, nullable=False)
@@ -25,6 +25,15 @@ class Book(db.Model):
 
   reviews = db.relationship('Review', backref='book', cascade='all, delete-orphan')
   collections = db.relationship('Collection', secondary=collections_books, back_populates='books', lazy='select')
+
+  def calculate_avg_rating(self):
+    #Calculates and updates the average rating based on related reviews.
+    if not self.reviews:
+      self.avgRating = None  # No reviews yet
+    else:
+      total_score = sum(review.rating for review in self.reviews)
+      self.avgRating = total_score / len(self.reviews)
+
 
   def to_dict(self):
     return {
@@ -35,7 +44,7 @@ class Book(db.Model):
       'publishDate': self.publishDate,
       'author': self.author,
       'genre': self.genre,
-      'avgRating': str(round(self.avgRating,2)),
+      'avgRating': self.avgRating,
       'imgUrl': self.imgUrl,
       'difficulty': self.difficulty,
       'reviews': [review.to_dict() for review in self.reviews]

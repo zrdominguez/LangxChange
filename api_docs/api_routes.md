@@ -480,7 +480,8 @@ Users should be able to view all reviews on a book.
           "id": 1,
           "bookId": 1,
           "userId": 1,
-          "review": "Random comment"
+          "review": "Random comment",
+          "score": 5
         }
         // more reviews...
       ]
@@ -510,7 +511,7 @@ Users should be able to create a review for a Book.
     ```json
     {
       "review": "Random comment",
-      "rating": 4
+      "score": 4
     }
     ```
 
@@ -536,7 +537,7 @@ Users should be able to create a review for a Book.
   - **Body**:
     ```json
     {
-      "message": "Bad **Request**",
+      "message": "Bad Request",
       "errors": {
         "review": "Review is required",
         "rating": "Rating is required"
@@ -603,7 +604,7 @@ Users should be able to update their Review for a Book.
   - **Body**:
     ```json
     {
-      "message": "Bad **Request**",
+      "message": "Bad Request",
       "errors": {
         "review": "Review is required",
         "rating": "Rating is required"
@@ -618,7 +619,7 @@ Users should be able to update their Review for a Book.
 
     ```json
     {
-      "message": "Book could not be found!"
+      "message": "Review could not be found!"
     }
     ```
 
