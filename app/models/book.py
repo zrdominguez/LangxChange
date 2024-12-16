@@ -37,5 +37,6 @@ class Book(db.Model):
       'genre': self.genre,
       'avgRating': str(round(self.avgRating,2)),
       'imgUrl': self.imgUrl,
-      'difficulty': self.difficulty
+      'difficulty': self.difficulty,
+      'reviews': [review.to_dict() for review in self.reviews]
     }

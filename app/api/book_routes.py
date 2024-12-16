@@ -24,3 +24,13 @@ def book_details(bookId):
     return book.to_dict()
   else:
     return {"message": "Book not found!"}, 404
+
+#GET all reviews of a book
+@book_routes.route('/<int:bookId>/reviews')
+def book_reviews(bookId):
+  book= Book.query.get(bookId)
+  if book:
+    bookReviews = book.to_dict()['reviews']
+  else:
+    return { "message": "book could not be found!"}
+  return book_reviews

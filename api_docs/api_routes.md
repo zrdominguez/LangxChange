@@ -460,14 +460,14 @@ Users should be able to remove Books from their Collection.
 
 ## Reviews
 
-### Get all reviews by collection's id
+### Get all reviews by book's id
 
-Users should be able to view all reviews on a collection.
+Users should be able to view all reviews on a book.
 
 - **Require authentication**: False
 - **Request**
   - **Method**: GET
-  - **Route path**: /api/collections/:collectionId/reviews
+  - **Route path**: /api/books/:bookId/reviews
   - **Body**: None
 - **Successful Response**
 
@@ -493,7 +493,7 @@ Users should be able to view all reviews on a collection.
   - **Body**:
     ```json
     {
-      "message": "Collection could not be found!"
+      "message": "book could not be found!"
     }
     ```
 
