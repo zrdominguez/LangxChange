@@ -1,5 +1,4 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required, current_user
+from flask import Blueprint
 from app.models import Book
 
 book_routes = Blueprint('books', __name__)

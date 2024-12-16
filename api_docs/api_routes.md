@@ -298,7 +298,7 @@ Users should be able to update their Collection(s) Name.
   - **Body**:
     ```json
     {
-      "message": "Collection name has been updated"
+      "message": "Collection name has been updated!"
     }
     ```
 
@@ -391,7 +391,7 @@ Users should be able to add Books to their Collection.
 - **Request**
 
   - **Method**: POST
-  - **Route path**: /api/collections/:collectionId
+  - **Route path**: /api/collections/:collectionId/books
   - **Body**:
     ```json
     {
@@ -405,7 +405,7 @@ Users should be able to add Books to their Collection.
   - **Body**:
     ```json
     {
-      "message": "Book has been added to collection",
+      "message": "Book has been added to collection!",
     }
     ```
 
@@ -415,7 +415,7 @@ Users should be able to add Books to their Collection.
   - **Body**:
     ```json
     {
-      "message": "Book not found"
+      "message": "Book not found!"
     }
     ```
 
@@ -426,7 +426,7 @@ Users should be able to remove Books from their Collection.
 - **Require authentication**: True
 - **Request**
   - **Method**: DELETE
-  - **Route path**: /api/collections/:collectionId
+  - **Route path**: /api/collections/:collectionId/books
   - **Body**: None
 - **Successful Response**
 

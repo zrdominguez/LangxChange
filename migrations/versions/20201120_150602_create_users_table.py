@@ -55,7 +55,6 @@ def upgrade():
     sa.Column('updatedAt', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['userId'], ['users.id']),
     sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('userId'),
     )
     op.create_table('collections_books',
     sa.Column('bookId', sa.Integer(), nullable=False),
