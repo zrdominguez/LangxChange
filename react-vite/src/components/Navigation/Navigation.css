@@ -1,3 +1,67 @@
 .profile-dropdown {
   position: absolute;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  padding: 0;
+  flex: 1 1 0px;
+  background-color: #14171c;
+}
+
+.middle-links {
+  display: flex;
+  height:fit-content;
+}
+
+.middle-links button{
+  background-color: #14171c;
+  border-color: white;
+  border-style: none;
+  padding: 0 10px 0 10px;
+  color: #f2a661;
+}
+
+.middle-links button:hover{
+  transform: scale(1.2);
+}
+
+.profile-dropdown {
+  display: block;
+  position: absolute;
+  list-style: none;
+}
+
+.profile-dropdown li:hover{
+  cursor: pointer;
+}
+
+.book-lang-dropdown {
+  display: block;
+  position: absolute;
+  list-style: none;
+}
+
+.home-logo{
+  width: auto;
+  height: auto;
+}
+
+.home-logo img{
+  width: 100%;
+  max-height: 90px;
+  object-fit: contain;
+}
+
+.search-wrapper{
+  display: flex;
+  justify-content: center;
+}
+
+#search-icon{
+  padding-right: 5px;
+  color: #129298;
+}
