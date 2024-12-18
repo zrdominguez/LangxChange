@@ -1,1 +1,5 @@
 /* TODO: Add sitewide styles */
+body{
+  background-image:url('https://zechariahdbucket.s3.us-east-2.amazonaws.com/background-image.jpg');
+  background-size: 33.3%;
+}

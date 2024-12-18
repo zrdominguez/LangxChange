@@ -61,6 +61,22 @@
   justify-content: center;
 }
 
+.search-wrapper input{
+  border-radius: 5px;
+  background-color: darkgray;
+  border: none;
+  font-size: 1em;
+  color: black;
+}
+
+.search-wrapper input::placeholder{
+  color: black;
+}
+
+.search-wrapper input:focus{
+  outline: none;
+}
+
 #search-icon{
   padding-right: 5px;
   color: #129298;
