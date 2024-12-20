@@ -164,3 +164,9 @@ def remove_book(collectionId):
     return {'message': 'Book has been removed from collection!'}
   else:
     return {'message': 'Book not found in collection!'}, 404
+
+#GET view all of current user's collections
+@collection_routes.route('/current')
+@login_required
+def user_collections():
+  return {'collections': current_user.get_collections()}

@@ -16,7 +16,7 @@ function LoginFormModal() {
 
     const serverResponse = await dispatch(
       thunkLogin({
-        email,
+        credentials:email,
         password,
       })
     );
@@ -41,7 +41,7 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.credentials && <p>{errors.credentials}</p>}
         <label>
           Password
           <input

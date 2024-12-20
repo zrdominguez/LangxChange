@@ -19,6 +19,7 @@ class User(db.Model, UserMixin):
     updatedAt = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 
     reviews = db.relationship('Review', backref='user', cascade='all, delete-orphan')
+    collections = db.relationship('Collection', backref='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
@@ -30,6 +31,11 @@ class User(db.Model, UserMixin):
 
     def check_password(self, password):
         return check_password_hash(self.password, password)
+
+    def get_collections(self):
+        if self.collections:
+            return [collection.to_dict() for collection in self.collections]
+        return None
 
     def to_dict(self):
         return {

@@ -34,11 +34,9 @@ function BooksButton() {
       </button>
       {showMenu && (
         <ul className={"book-lang-dropdown"} ref={ulRef}>
-          <>
             <li>English</li>
             <li>Spanish</li>
             <li>Japanese</li>
-          </>
         </ul>
       )}
     </>

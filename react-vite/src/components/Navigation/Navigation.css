@@ -7,14 +7,18 @@
   justify-content: space-around;
   align-items: center;
   list-style: none;
-  padding: 0;
+  padding: 0px;
   flex: 1 1 0px;
   background-color: #14171c;
+  width: 100%;
 }
 
 .middle-links {
   display: flex;
   height:fit-content;
+  gap: 20px;
+  align-items: center;
+  padding-left: 9em;
 }
 
 .middle-links button{
@@ -30,19 +34,49 @@
 }
 
 .profile-dropdown {
-  display: block;
+  background-color:darkgray;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px 5px 5px;
   position: absolute;
   list-style: none;
+  border-radius: 4px;
+  align-items: center;
+  width: 5em;
+  transform: translateX(-25px);
+}
+
+.profile-dropdown li{
+  color: whitesmoke
 }
 
 .profile-dropdown li:hover{
+  color: black;
   cursor: pointer;
+  transform: scale(1.1);
 }
 
 .book-lang-dropdown {
-  display: block;
+  background-color:darkgray;
+  display: flex;
+  flex-direction: column;
+  padding: 5px 5px 5px 5px;
   position: absolute;
   list-style: none;
+  border-radius: 4px;
+  align-items: center;
+  width: 5em;
+  transform: translateX(-25px);
+}
+
+.book-lang-dropdown li{
+  color: whitesmoke
+}
+
+.book-lang-dropdown li:hover{
+  color: black;
+  cursor: pointer;
+  transform: scale(1.1);
 }
 
 .home-logo{
@@ -80,4 +114,19 @@
 #search-icon{
   padding-right: 5px;
   color: #129298;
+}
+
+#logout-btn{
+  color: whitesmoke;
+  background-color:darkgray;
+}
+
+#logout-btn:hover{
+  color: black;
+  transform: scale(1);
+}
+
+.profile-icon{
+  width: 100%;
+  height: 1.4em;
 }

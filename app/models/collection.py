@@ -18,6 +18,7 @@ class Collection(db.Model):
 
   def to_dict(self):
     return {
+      'id': self.id,
       'name': self.name,
       'userId': self.userId,
       'lang': self.lang,
