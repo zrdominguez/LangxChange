@@ -1,25 +1,40 @@
 import { useDispatch, useSelector } from "react-redux"
-import { useEffect } from "react"
-import { selectUserCollections, thunkGetUserCollections } from "../../redux/collection";
+import { useEffect, useState } from "react"
+import { selectUserCollections, thunkGetUserCollections} from "../../redux/collection";
+import './UserCollection.css';
 import CollectionCard from "./CollectionCard";
+import CreateCollectionModal from "../CreateCollectionModal";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
 function UserCollection(){
   const dispatch = useDispatch();
   const collections = useSelector(selectUserCollections)
+  const [responseMsg, setResponseMsg] = useState({})
 
   useEffect(() => {
     dispatch(thunkGetUserCollections())
-  },[dispatch])
-
-  console.log(collections)
+  },[dispatch, collections.length])
 
   return (
     <div className="user-collections">
       <h2 style={{color:"white"}} >My Collections</h2>
+      <div className="res-msg" onClick={()=>setResponseMsg({})}>
+        {responseMsg?.message &&
+        <p>{responseMsg.message}</p>
+        }
+      </div>
       <div className="cards-container">
         {collections.length > 0 &&
-        collections.map( collection => <CollectionCard key={collection.id} collection={collection} />)
+        collections.map( collection =>
+        <CollectionCard key={collection.id}
+        collection={collection} setResponseMsg={setResponseMsg}/>)
         }
+        <div id="create-collection">
+          <OpenModalButton
+            buttonText="+"
+            modalComponent={<CreateCollectionModal />}
+          />
+        </div>
       </div>
     </div>
   )

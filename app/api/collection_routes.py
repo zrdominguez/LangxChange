@@ -18,7 +18,7 @@ def check_book(bookId):
   return book
 
 #POST create a new Collection
-@collection_routes.route('/', methods=['POST'])
+@collection_routes.route('/new', methods=['POST'])
 @login_required
 def create_collection():
   form = CollectionForm()
