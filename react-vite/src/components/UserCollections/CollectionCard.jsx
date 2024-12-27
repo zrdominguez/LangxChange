@@ -1,18 +1,33 @@
-import { useState } from "react"
-import { useDispatch, useSelector } from "react-redux";
-import { clearErrors, selectErrors, thunkDeleteCollection, thunkUpdateCollectionName } from "../../redux/collection";
+import { useRef, useState, useEffect } from "react"
+import { useDispatch } from "react-redux";
+import { clearErrors, thunkDeleteCollection, thunkUpdateCollectionName } from "../../redux/collection";
 
 function CollectionCard({collection, setResponseMsg}){
   const [isEditing, setIsEditing] = useState(false);
   const [collectionName, setCollectionName] = useState(collection.name);
-  const collectionErrors = useSelector(selectErrors);
   const [errors, setErrors] = useState({})
-
+  const myRef = useRef(null);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (myRef.current && !myRef.current.contains(event.target)) {
+        setErrors({})
+        dispatch(clearErrors())
+        setIsEditing(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dispatch]);
+
   const handleDelete = () => {
-   dispatch(thunkDeleteCollection(collection.id))
-   .then(res => res?.message ? setResponseMsg(res.message):null)
+    dispatch(thunkDeleteCollection(collection.id))
+    .then(res => res?.message ? setResponseMsg(res.message):null)
   }
 
   const toggleEdit = () => {
@@ -23,41 +38,20 @@ function CollectionCard({collection, setResponseMsg}){
     setCollectionName(e.target.value);
   }
 
-  const handleBlur = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Skip blur logic if the related target is the Confirm button
-    if (e.relatedTarget && e.relatedTarget.tagName === 'BUTTON') {
-      return;
-    }
-
-    setIsEditing(false);
-    dispatch(clearErrors());
-    setErrors({});
-    setCollectionName(collection.name);
-  };
-
-  const handleConfirm = async e => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if(collection.name === collectionName) {
-      setIsEditing(false)
-      dispatch(clearErrors())
-      return
-    }
-
-    const response = await dispatch(thunkUpdateCollectionName({...collection, name: collectionName}))
-    if(!response){
-      setCollectionName(collection.name)
-      setErrors(collectionErrors)
-    }else {
-      console.log('if okisjaoifnsiapkjsfi')
-      setErrors({})
-      dispatch(clearErrors())
-      setResponseMsg(response)
-      setIsEditing(false)
+  const handleEnter = async e => {
+    if(e.key == "Enter"){
+      try{
+        if(collectionName != collection.name){
+          await dispatch(thunkUpdateCollectionName({...collection, name: collectionName}));
+        }
+        setErrors({})
+        dispatch(clearErrors())
+        setIsEditing(false)
+      } catch(err){
+        setCollectionName(collection.name)
+        console.log(err)
+        setErrors(err.errors)
+      }
     }
   }
 
@@ -70,14 +64,12 @@ function CollectionCard({collection, setResponseMsg}){
         <div>
           <input
           type="text"
+          ref={myRef}
           value={collectionName}
           onChange={handleInput}
-          onBlur={handleBlur}
+          onKeyDown={handleEnter}
           autoFocus
           />
-          <button
-          onMouseDown={handleConfirm}
-          >Confirm</button>
         </div>
         :
         <>

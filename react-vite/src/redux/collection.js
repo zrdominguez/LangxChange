@@ -100,6 +100,7 @@ export const thunkUpdateCollectionName = collection => async dispatch => {
   } catch (e){
     console.error("Error in thunkUpdateCollectionName:", e);
     dispatch(collectionErrors(e))
+    throw e
   }
 }
 
@@ -126,9 +127,10 @@ export const thunkCreateCollection = collection => async dispatch =>{
     } else {
       throw new Error('There was a Server Error!')
     }
-  } catch (e){
+  } catch(e) {
     console.error("Error in thunkCreateCollection:", e);
-    dispatch(collectionErrors(e))
+    await dispatch(collectionErrors(e));
+    throw e;
   }
 }
 

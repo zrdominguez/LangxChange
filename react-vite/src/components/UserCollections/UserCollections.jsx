@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
-import { selectUserCollections, thunkGetUserCollections} from "../../redux/collection";
+import { clearErrors, selectUserCollections, thunkGetUserCollections} from "../../redux/collection";
 import './UserCollection.css';
 import CollectionCard from "./CollectionCard";
 import CreateCollectionModal from "../CreateCollectionModal";
@@ -33,6 +33,7 @@ function UserCollection(){
           <OpenModalButton
             buttonText="+"
             modalComponent={<CreateCollectionModal />}
+            onModalClose={() => dispatch(clearErrors())}
           />
         </div>
       </div>

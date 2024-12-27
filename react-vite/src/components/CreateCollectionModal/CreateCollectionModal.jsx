@@ -1,36 +1,25 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./CreateCollectionModal.css";
-import { clearErrors, selectErrors, thunkCreateCollection } from "../../redux/collection";
+import { selectErrors, thunkCreateCollection } from "../../redux/collection";
 
 function CreateCollectionModal() {
   const dispatch = useDispatch();
   const [collectionName, setCollectionName] = useState("");
   const [language, setLanguage] = useState("");
   const createErrors = useSelector(selectErrors);
-  const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
-
-  useEffect(() => {
-    if (Object.keys(createErrors || {}).length > 0) {
-      setErrors(createErrors);
-    } else {
-      dispatch(clearErrors());
-      setErrors({});
-      closeModal();
-    }
-  }, [createErrors, dispatch, closeModal]);
-
-  const handleChange = e => {
-    setLanguage(e.target.value)
-  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await dispatch(thunkCreateCollection({collectionName, language}))
+    try{
+      await dispatch(thunkCreateCollection({collectionName, language}))
+      closeModal()
+    } catch (e){
+      setCollectionName("")
+    }
   };
-
 
   return (
     <>
@@ -45,14 +34,14 @@ function CreateCollectionModal() {
             required
           />
         </label>
-        {errors.collectionName && <p>{errors.collectionName.toString()}</p>}
+        {createErrors.collectionName && <p>{createErrors.collectionName.toString()}</p>}
         <label htmlFor='language'>
           Language:
         </label>
         <select
             name="language"
             id="languages"
-            onChange={handleChange}
+            onChange={e => setLanguage(e.target.value)}
             value={language}
             required
           >
@@ -63,7 +52,7 @@ function CreateCollectionModal() {
             <option value="Spanish">Spanish</option>
             <option value="Japanese">Japanese</option>
         </select>
-        {errors.language && <p>{errors.language.toString()}</p>}
+        {createErrors.language && <p>{createErrors.language.toString()}</p>}
         <button type="submit">Create</button>
       </form>
     </>
