@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 
 function BooksButton() {
   const [showMenu, setShowMenu] = useState(false);
-  const ulRef = useRef();
+  const ulRef = useRef(null);
+
 
   const toggleMenu = (e) => {
     e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
@@ -25,8 +27,6 @@ function BooksButton() {
 
   const closeMenu = () => setShowMenu(false);
 
-
-
   return (
     <>
       <button onClick={toggleMenu}>
@@ -34,9 +34,9 @@ function BooksButton() {
       </button>
       {showMenu && (
         <ul className={"book-lang-dropdown"} ref={ulRef}>
-            <li>English</li>
-            <li>Spanish</li>
-            <li>Japanese</li>
+            <li><NavLink to={'/books/eng'} onClick={closeMenu}>English</NavLink></li>
+            <li><NavLink to={'/books/sp'} onClick={closeMenu}>Spanish</NavLink></li>
+            <li><NavLink to={'/books/jp'} onClick={closeMenu}>Japanese</NavLink></li>
         </ul>
       )}
     </>

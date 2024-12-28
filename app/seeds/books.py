@@ -34,7 +34,7 @@ def seed_books():
             "genre": ["Thriller", "Novel", "Fiction"],
             "avgRating": 4.3,
             "difficulty": "Intermediate",
-            "imgUrl": f"{S3_LOCATION}/to_kill_a_mockingbird.jpg",
+            "imgUrl": f"{S3_LOCATION}/to_kill_a_mocking_bird.jpg",
             "createdAt": datetime.now(),
             "updatedAt": datetime.now()
         },

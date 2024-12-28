@@ -34,8 +34,7 @@ class Book(db.Model):
       total_score = sum(review.rating for review in self.reviews)
       self.avgRating = total_score / len(self.reviews)
 
-
-  def to_dict(self):
+  def to_dict_details(self):
     return {
       'id': self.id,
       'name': self.name,
@@ -49,4 +48,15 @@ class Book(db.Model):
       'imgUrl': self.imgUrl,
       'difficulty': self.difficulty,
       'reviews': [review.to_dict() for review in self.reviews]
+    }
+
+  def to_dict(self):
+    return {
+      'id': self.id,
+      'name': self.name,
+      'lang': self.lang,
+      'author': self.author,
+      'genre': self.genre,
+      'avgRating': self.avgRating,
+      'imgUrl': self.imgUrl,
     }

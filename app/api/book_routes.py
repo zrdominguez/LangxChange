@@ -27,7 +27,7 @@ def books(lang):
 def book_details(bookId):
   book = Book.query.get(bookId)
   if book:
-    return book.to_dict()
+    return book.to_dict_details()
   else:
     return {"message": "Book not found!"}, 404
 

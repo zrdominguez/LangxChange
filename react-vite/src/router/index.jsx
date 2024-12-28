@@ -3,6 +3,7 @@ import Layout from './Layout';
 import LandingPage from '../components/LandingPage';
 import UserCollection from '../components/UserCollections/UserCollections';
 import BookList from '../components/BookList';
+import BookDetails from '../components/BookDetails';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
         path:"/books/:lang",
         element: <BookList />
       },
+      {
+        path:"/books/:bookId/details",
+        element: <BookDetails />
+      }
     ],
   },
 ]);

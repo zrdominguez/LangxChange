@@ -8,10 +8,17 @@ const CLEAR_ERRORS = 'books/clear_errors';
 
 //action creators
 
-export const loadBooksByLanguage = (books) => (
+export const loadBooksByLanguage = books => (
   {
     type: LOAD_BOOKS_BY_LANGUAGE,
     books
+  }
+)
+
+export const loadBookById = book => (
+  {
+    type: LOAD_BOOK_BY_ID,
+    book
   }
 )
 
@@ -45,18 +52,42 @@ export const thunkGetBooksByLanguage = lang => async dispatch => {
       throw new Error('There was a Server Error!')
     }
   } catch (e) {
-    console.error("Error in thunkGetUserCollections:", e);
+    console.error("Error in thunkGetBooksByLanguage:", e);
     dispatch(bookErrors(e))
+
+  }
+}
+
+export const thunkGetBookById = bookId => async dispatch => {
+  try{
+    const res = await fetch(`/api/books/${bookId}`)
+    if (res.ok) {
+      const book = await res.json()
+      dispatch(loadBookById(book))
+    }
+    else if (res.status < 500) {
+      const errorMessages = await res.json();
+      console.error("Validation Errors:", errorMessages);
+      throw new Error(errorMessages.message || 'Something went wrong!')
+    }else {
+      throw new Error('There was a Server Error!')
+    }
+  }catch(e){
+    console.error("Error in thunkGetBookById:", e);
+    dispatch(bookErrors(e))
+
   }
 }
 
 //selectors
 export const selectBooks = state => state.books;
 export const selectBooksByLanguage = createSelector(selectBooks, books => Object.values(books.books))
+export const selectBookById = createSelector(selectBooks, books => books.bookDetails)
 
 //reducer
 const initialState = {
   books:{},
+  bookDetails:{},
   errors:{},
   loading: false
 }
@@ -75,6 +106,13 @@ function booksReducer(state = initialState, action){
         }
       }
       return state
+    }
+    case LOAD_BOOK_BY_ID: {
+      const {book} = action
+      return {
+        ...state,
+        bookDetails: book
+      }
     }
     default:
       return state;
