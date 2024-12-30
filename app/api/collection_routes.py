@@ -129,7 +129,7 @@ def view_books(collectionId):
   if not isinstance(collection, Collection):
     return collection
 
-  return {'collection': collection.to_dict()}
+  return {'books': collection.to_dict()['books']}
 
 #DELETE Remove Book in collection
 @collection_routes.route('/<int:collectionId>/books', methods=['DELETE'])

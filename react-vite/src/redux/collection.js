@@ -5,7 +5,6 @@ const LOAD_COLLECTION_BY_ID = 'collections/load_collection_by_id';
 const EDIT_COLLECTION_NAME = 'collections/edit_collection_name';
 const CREATE_COLLECTION = 'collections/create_collection';
 const DELETE_COLLECTION = 'collections/delete_collection';
-const REMOVE_BOOK_FROM_COLLECTION = 'collections/remove_book_from_collection';
 const ADD_BOOK_TO_COLLECTION = 'collections/add_books_to_collection';
 const COLLECTION_ERRORS = 'collections/collection_errors';
 const CLEAR_ERRORS = 'collections/clear_errors'
@@ -161,17 +160,23 @@ export const thunkDeleteCollection = collectionId => async dispatch => {
   }
 }
 
+
+
+
+
 //selectors
 export const selectCollectionsObj = state => state.collections;
 export const selectUserCollections = createSelector(selectCollectionsObj, collections => Object.values(collections.userCollections))
 export const selectErrors = createSelector(selectCollectionsObj, collections => collections.errors)
+export const selectCollectionById = createSelector([selectCollectionsObj, (state,id) => id],
+  (collection, id) => collection.userCollections[id]
+)
 
 
 //reducer
 const initialState = {
   userCollections: {},
   errors: {},
-  loading: false
 }
 
 function collectionsReducer(state = initialState, action) {
@@ -228,6 +233,7 @@ function collectionsReducer(state = initialState, action) {
         errors:{}
       }
     }
+
     default:
       return state;
   }

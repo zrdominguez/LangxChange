@@ -1,0 +1,14 @@
+.book-details-page{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.details-section{
+  display: flex;
+}
+
+.book-info-list{
+  list-style: none;
+  padding-left: 0;
+}

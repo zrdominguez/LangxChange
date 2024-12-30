@@ -41,7 +41,7 @@ class Book(db.Model):
       'lang': self.lang,
       'summary': self.summary,
       'publisher': self.publisher,
-      'publishDate': self.publishDate,
+      'publishDate': self.publishDate.strftime('%m-%d-%Y'),
       'author': self.author,
       'genre': self.genre,
       'avgRating': self.avgRating,

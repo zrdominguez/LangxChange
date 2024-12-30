@@ -36,7 +36,7 @@ def book_details(bookId):
 def book_reviews(bookId):
   book = Book.query.get(bookId)
   if book:
-    bookReviews = book.to_dict()['reviews']
+    bookReviews = book.to_dict_details()['reviews']
   else:
     return {"message": "book could not be found!"}, 404
   return {'reviews': bookReviews}
@@ -47,7 +47,7 @@ def book_reviews(bookId):
 def create_review(bookId):
   book = Book.query.get(bookId)
   if check_if_review_exists(book):
-    return {'message': 'User already has a review for this book'}
+    return {'message': 'User already has a review for this book'}, 403
   if book:
     form = NewReviewForm()
     form["csrf_token"].data = request.cookies.get("csrf_token")

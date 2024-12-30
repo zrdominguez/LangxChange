@@ -4,6 +4,7 @@ import LandingPage from '../components/LandingPage';
 import UserCollection from '../components/UserCollections/UserCollections';
 import BookList from '../components/BookList';
 import BookDetails from '../components/BookDetails';
+import CollectionList from '../components/CollectionList/CollectionList';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path:"/books/:bookId/details",
         element: <BookDetails />
+      },
+      {
+        path:"/collections/:collectionId/books",
+        element: <CollectionList />
       }
     ],
   },

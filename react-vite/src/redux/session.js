@@ -1,3 +1,5 @@
+import { createSelector } from "reselect";
+
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
 
@@ -63,6 +65,9 @@ export const thunkLogout = () => async (dispatch) => {
   await fetch("/api/auth/logout");
   dispatch(removeUser());
 };
+
+export const selectUser = state => state.session
+export const selectCurrentUser = createSelector(selectUser, session => session.user)
 
 const initialState = { user: null };
 

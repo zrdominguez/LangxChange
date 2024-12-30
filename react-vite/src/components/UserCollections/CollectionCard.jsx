@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react"
 import { useDispatch } from "react-redux";
 import { clearErrors, thunkDeleteCollection, thunkUpdateCollectionName } from "../../redux/collection";
+import { NavLink } from "react-router-dom";
 
 function CollectionCard({collection, setResponseMsg}){
   const [isEditing, setIsEditing] = useState(false);
@@ -59,7 +60,7 @@ function CollectionCard({collection, setResponseMsg}){
   return(
     <div className="collection-card" style={{backgroundColor:"white"}}>
       <button onClick={handleDelete}>X</button>
-      <img />
+      <NavLink to={`/collections/${collection.id}/books`}>Test</NavLink>
       {isEditing ?
         <div>
           <input

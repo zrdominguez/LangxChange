@@ -1,33 +1,35 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate, useParams } from "react-router-dom"
-import { selectBooksByLanguage, thunkGetBooksByLanguage } from "../../redux/books";
+import { useParams } from "react-router-dom"
+import { selectCollectionBooks, thunkGetCollectionBooks } from "../../redux/books";
 import BookCard from "../BookCard";
-import "./BookList.css"
+import "./CollectionList.css"
+import { selectCollectionById, thunkGetUserCollections } from "../../redux/collection";
 
-const allowedLang = {'eng':'English', 'jp':'Japanese', 'sp':'Spanish'}
 
-function BookList(){
+
+function CollectionList(){
   const dispatch = useDispatch()
-  const { lang } = useParams();
-  const navigate = useNavigate();
-  const books = Object.values(useSelector(selectBooksByLanguage))
+  const { collectionId } = useParams();
+  const books = useSelector(selectCollectionBooks)
+  const collection = useSelector(state => selectCollectionById(state, collectionId))
+
+  useEffect(() =>{
+    dispatch(thunkGetUserCollections())
+  }, [dispatch])
 
   useEffect(()=>{
-    if (!(lang in allowedLang)){
-      navigate("/")
-    }else {
-      dispatch(thunkGetBooksByLanguage(lang))
-    }
-  },[dispatch, lang, navigate])
+    dispatch(thunkGetCollectionBooks(collectionId))
+  },[dispatch, collectionId])
+
 
   return(
     <div className='book-list-page'>
       <div className="book-list-column">
-        <h1>{`${allowedLang[lang]}`}</h1>
+        <h1>{`${collection?.name}`}</h1>
         {books.length > 0 &&
           books.map(book =>
-            <BookCard key={book.id} book={book}/>
+            <BookCard key={book.id} book={book} collectionId={collectionId}/>
           )
         }
 
@@ -45,5 +47,4 @@ function BookList(){
     </div>
   )
 }
-
-export default BookList
+export default CollectionList
