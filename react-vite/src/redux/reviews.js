@@ -28,7 +28,7 @@ export const reviewErrors = err => (
   }
 )
 
-export const clearErrors = () => (
+export const clearReviewsErrors = () => (
   {
     type: CLEAR_ERRORS,
   }

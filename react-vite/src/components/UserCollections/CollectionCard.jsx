@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react"
 import { useDispatch } from "react-redux";
-import { clearErrors, thunkDeleteCollection, thunkUpdateCollectionName } from "../../redux/collection";
+import { clearCollectionsErrors, thunkDeleteCollection, thunkUpdateCollectionName } from "../../redux/collection";
 import { NavLink } from "react-router-dom";
 
 function CollectionCard({collection, setResponseMsg}){
@@ -14,7 +14,7 @@ function CollectionCard({collection, setResponseMsg}){
     function handleClickOutside(event) {
       if (myRef.current && !myRef.current.contains(event.target)) {
         setErrors({})
-        dispatch(clearErrors())
+        dispatch(clearCollectionsErrors())
         setIsEditing(false)
       }
     }
@@ -46,7 +46,7 @@ function CollectionCard({collection, setResponseMsg}){
           await dispatch(thunkUpdateCollectionName({...collection, name: collectionName}));
         }
         setErrors({})
-        dispatch(clearErrors())
+        dispatch(clearCollectionsErrors())
         setIsEditing(false)
       } catch(err){
         setCollectionName(collection.name)

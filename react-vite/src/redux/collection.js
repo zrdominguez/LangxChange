@@ -1,11 +1,11 @@
 import {createSelector} from 'reselect';
 
 const LOAD_USER_COLLECTIONS = 'collections/load_user_collections';
-const LOAD_COLLECTION_BY_ID = 'collections/load_collection_by_id';
+//const LOAD_COLLECTION_BY_ID = 'collections/load_collection_by_id';
 const EDIT_COLLECTION_NAME = 'collections/edit_collection_name';
 const CREATE_COLLECTION = 'collections/create_collection';
 const DELETE_COLLECTION = 'collections/delete_collection';
-const ADD_BOOK_TO_COLLECTION = 'collections/add_books_to_collection';
+
 const COLLECTION_ERRORS = 'collections/collection_errors';
 const CLEAR_ERRORS = 'collections/clear_errors'
 
@@ -45,7 +45,7 @@ export const collectionErrors = errors => (
   }
 )
 
-export const clearErrors = () => (
+export const clearCollectionsErrors = () => (
   {
     type: CLEAR_ERRORS
   }

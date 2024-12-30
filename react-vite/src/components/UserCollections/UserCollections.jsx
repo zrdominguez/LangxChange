@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react"
-import { clearErrors, selectUserCollections, thunkGetUserCollections} from "../../redux/collection";
+import { clearCollectionsErrors, selectUserCollections, thunkGetUserCollections} from "../../redux/collection";
 import './UserCollection.css';
 import CollectionCard from "./CollectionCard";
 import CreateCollectionModal from "../CreateCollectionModal";
@@ -27,13 +27,14 @@ function UserCollection(){
         {collections.length > 0 &&
         collections.map( collection =>
         <CollectionCard key={collection.id}
-        collection={collection} setResponseMsg={setResponseMsg}/>)
+        collection={collection} setResponseMsg={setResponseMsg}
+        />)
         }
         <div id="create-collection">
           <OpenModalButton
             buttonText="+"
             modalComponent={<CreateCollectionModal />}
-            onModalClose={() => dispatch(clearErrors())}
+            onModalClose={() => dispatch(clearCollectionsErrors())}
           />
         </div>
       </div>

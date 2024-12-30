@@ -7,8 +7,10 @@ import "./BookDetails.css"
 import ReviewList from "../ReviewList"
 import OpenModalButton from "../OpenModalButton/OpenModalButton"
 import ReviewModal from "../ReviewModal/ReviewModal"
-import { clearErrors, selectReviewsArray, thunkGetBookReviews } from "../../redux/reviews"
+import { clearReviewsErrors, selectReviewsArray, thunkGetBookReviews } from "../../redux/reviews"
 import { selectCurrentUser } from "../../redux/session"
+import AddBookModal from "../AddBookModal"
+import { clearCollectionsErrors } from "../../redux/collection"
 
 function arrayToCommaSeparatedString(arr) {
   if (arr.length === 0) return "";
@@ -36,11 +38,15 @@ function BookDetails(){
           <div style={{backgroundColor:"darkgray"}}>
             {user &&
               <span>
-                <button>Add</button>
+                <OpenModalButton
+                modalComponent={<AddBookModal bookId={book.id}/>}
+                buttonText={'Add to Collection'}
+                onModalClose={() => dispatch(clearCollectionsErrors())}
+                />
                 <OpenModalButton
                   modalComponent={<ReviewModal bookId={bookId}/>}
                   buttonText={'Review'}
-                  onModalClose={() => dispatch(clearErrors())}
+                  onModalClose={() => dispatch(clearReviewsErrors())}
                 />
               </span>
             }
