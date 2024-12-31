@@ -5,7 +5,7 @@ from sqlalchemy.sql import text
 
 
 def seed_books():
-  BUCKET_NAME = os.getenv("S3_BUCKET")
+  BUCKET_NAME = os.environ.get("S3_BUCKET")
   S3_LOCATION = f"http://{BUCKET_NAME}.s3.us-east-2.amazonaws.com"
 
   books_data = [
