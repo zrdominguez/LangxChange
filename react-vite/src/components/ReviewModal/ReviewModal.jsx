@@ -37,7 +37,7 @@ function ReviewModal({bookId}){
         <h1>Make a Review</h1>
         {errors.message && Object.values(errors).length == 1 && <p className="error-text">{errors.message}</p>}
         {errors.rating && <p className="error-text">{`Rating: ${errors.rating.toString()}`}</p>}
-        <label id='review-label' for="review-input">Review:</label>
+        <label id='review-label' htmlFor="review-input">Review:</label>
         <textarea id="review-input"
         type="text"
         value={review}
