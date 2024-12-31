@@ -12,19 +12,21 @@ function AddCollectionCard({collection, bookId}){
     try{
       await dispatch(thunkAddBookToCollection(collection.id, bookId))
       closeModal()
+      window.alert(`Book has been added to collection: ${collection.name}`)
     }catch(e){
-      console.log(e)
+      window.alert(e.errors)
     }
   }
 
   console.log(errors)
 
   return(
-    <div>
+    <div className="add-book">
       <img />
       <p>{collection.name}</p>
       <button
       onClick={handleAddBook}
+      style={{width:'fit-content'}}
       >+</button>
     </div>
   )

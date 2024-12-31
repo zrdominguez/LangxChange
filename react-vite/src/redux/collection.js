@@ -210,6 +210,7 @@ function collectionsReducer(state = initialState, action) {
         ...state,
         loading: false,
         userCollections:{
+          ...state.userCollections,
           [collection.id]: collection
         }
       }

@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect'
 const LOAD_BOOK_REVIEWS = 'reviews/load_book_reviews';
 const CREATE_BOOK_REVIEW = `reviews/create_book_review`;
-
+const DELETE_REVIEW = 'reviews/delete_review';
 const REVIEW_ERRORS = 'reviews/review_errors';
 const CLEAR_ERRORS = 'reviews/clear_errors';
 
@@ -18,6 +18,13 @@ export const createBookReview = review => (
   {
     type: CREATE_BOOK_REVIEW,
     review
+  }
+)
+
+export const deleteReview = reviewId => (
+  {
+    type: DELETE_REVIEW,
+    reviewId
   }
 )
 
@@ -84,6 +91,33 @@ export const thunkCreateReview = (bookId, review) => async dispatch =>{
   }
 }
 
+export const thunkDeleteReview = reviewId => async dispatch => {
+  try{
+    const res = await fetch(`/api/reviews/${reviewId}`,
+      {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      }
+    )
+    if (res.ok) {
+      const deleteMsg = await res.json()
+      await dispatch(deleteReview(reviewId))
+      return deleteMsg;
+    }
+    else if (res.status < 500) {
+      const errorMessages = await res.json();
+      console.error("Validation Errors:", errorMessages);
+      throw errorMessages.errors || errorMessages
+    }else {
+      throw new Error('There was a Server Error!')
+    }
+  }catch(e){
+    console.error("Error in thunkDeleteReview:", e);
+    await dispatch(reviewErrors(e))
+    throw e
+  }
+}
+
 //selectors
 export const selectReviews = state => state.reviews;
 export const selectReviewsArray = createSelector(
@@ -96,6 +130,7 @@ export const selectReviewErrors = createSelector(
 //reducer
 const initialState = {
   bookReviews:{},
+  userReview:{},
   errors:{}
 }
 
@@ -121,6 +156,12 @@ function reviewsReducer(state = initialState, action){
         [review.id] : review
         }
       }
+    }
+    case DELETE_REVIEW:{
+      const {reviewId} = action
+      const copyState = {...state}
+      delete copyState.bookReviews[reviewId]
+      return copyState
     }
     case REVIEW_ERRORS:{
       const error = action.err

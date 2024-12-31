@@ -22,11 +22,11 @@ function CreateCollectionModal() {
   };
 
   return (
-    <>
+    <div className="create-modal">
       <h1>Create a Collection</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="create-form">
         <label>
-          Collection Name
+          Collection Name:
           <input
             type="text"
             value={collectionName}
@@ -37,25 +37,26 @@ function CreateCollectionModal() {
         {createErrors.collectionName && <p>{createErrors.collectionName.toString()}</p>}
         <label htmlFor='language'>
           Language:
+
+          <select
+              name="language"
+              id="languages"
+              onChange={e => setLanguage(e.target.value)}
+              value={language}
+              required
+            >
+              <option value="" disabled>
+                Select a language
+              </option>
+              <option value="English">English</option>
+              <option value="Spanish">Spanish</option>
+              <option value="Japanese">Japanese</option>
+          </select>
         </label>
-        <select
-            name="language"
-            id="languages"
-            onChange={e => setLanguage(e.target.value)}
-            value={language}
-            required
-          >
-            <option value="" disabled>
-              Select a language
-            </option>
-            <option value="English">English</option>
-            <option value="Spanish">Spanish</option>
-            <option value="Japanese">Japanese</option>
-        </select>
         {createErrors.language && <p>{createErrors.language.toString()}</p>}
-        <button type="submit">Create</button>
+        <button type="submit" id="create-button">Create</button>
       </form>
-    </>
+    </div>
   );
 }
 

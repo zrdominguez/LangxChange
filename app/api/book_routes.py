@@ -20,6 +20,8 @@ def books(lang):
     return {'error': f'Language "{lang}" is not supported.'}, 400
   lang = LANGUAGES[lang]
   books = Book.query.filter(Book.lang == lang).all()
+  for book in books:
+    book.calculate_avg_rating()
   return {'books':[book.to_dict() for book in books]}
 
 #GET Book details by id

@@ -29,7 +29,7 @@ class Book(db.Model):
   def calculate_avg_rating(self):
     #Calculates and updates the average rating based on related reviews.
     if not self.reviews:
-      self.avgRating = None  # No reviews yet
+      self.avgRating = 0  # No reviews yet
     else:
       total_score = sum(review.rating for review in self.reviews)
       self.avgRating = total_score / len(self.reviews)

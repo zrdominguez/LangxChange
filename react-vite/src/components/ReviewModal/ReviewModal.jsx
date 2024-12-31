@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import {IoMdStarOutline, IoMdStar}  from "react-icons/io";
 import { selectReviewErrors, thunkCreateReview } from "../../redux/reviews";
 import { useModal } from "../../context/Modal";
+import "./ReviewModal.css"
 
 function ReviewModal({bookId}){
   const dispatch = useDispatch();
@@ -29,61 +30,61 @@ function ReviewModal({bookId}){
   console.log(Object.values(errors))
 
   return(
-    <form className="review-form"
-    onSubmit={handleSubmit}
-    >
-      <h1>Make a Review</h1>
-      <p className='error-text'>{errors.message && Object.values(errors).length == 1 && errors.message}</p>
-      <p className="error-text">{errors.rating && `Rating: ${errors.rating.toString()}`}</p>
-      <label>
-        Review:
-        <textarea
+    <div className="review-modal">
+      <form className="review-form"
+      onSubmit={handleSubmit}
+      >
+        <h1>Make a Review</h1>
+        {errors.message && Object.values(errors).length == 1 && <p className="error-text">{errors.message}</p>}
+        {errors.rating && <p className="error-text">{`Rating: ${errors.rating.toString()}`}</p>}
+        <label id='review-label' for="review-input">Review:</label>
+        <textarea id="review-input"
         type="text"
         value={review}
         onChange={handleChangeReview}
         required
         >
         </textarea>
-      </label>
 
-      <div className='star-rating'>
-        <label>Rating: </label>
-        <div className="star-container">
-          {[...Array(5)].map((el, i) => (
-            <span
-              key={i}
-              onClick={() => {
-                setRating(i + 1)
-                setClicked(true)
-              }}
-              style={{ cursor: 'pointer' }}
-            >
-              {rating >= (i + 1) ? (
-                <IoMdStar
-                id={`full-star${i + 1}`}
-                onMouseLeave={() => {
-                if(!clicked){
-                  setRating(0)
-                }
-                  setClicked(false)
+        <div className='star-rating'>
+          <label>Rating: </label>
+          <div className="star-container">
+            {[...Array(5)].map((el, i) => (
+              <span
+                key={i}
+                onClick={() => {
+                  setRating(i + 1)
+                  setClicked(true)
                 }}
-                />
-              ) :
-              (
-                <IoMdStarOutline
-                 id={`star${i + 1}`}
-                 onMouseOver={()=> setRating(i + 1)}
-                 />
-              )}
-            </span>
-          ))}
+                style={{ cursor: 'pointer' }}
+              >
+                {rating >= (i + 1) ? (
+                  <IoMdStar
+                  id={`full-star${i + 1}`}
+                  onMouseLeave={() => {
+                  if(!clicked){
+                    setRating(0)
+                  }
+                    setClicked(false)
+                  }}
+                  />
+                ) :
+                (
+                  <IoMdStarOutline
+                   id={`star${i + 1}`}
+                   onMouseOver={()=> setRating(i + 1)}
+                   />
+                )}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
 
-      <button
-      type="submit"
-      >Submit</button>
-    </form>
+        <button
+        type="submit"
+        >Submit</button>
+      </form>
+    </div>
   )
 }
 

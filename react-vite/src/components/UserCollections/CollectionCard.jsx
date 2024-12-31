@@ -2,6 +2,7 @@ import { useRef, useState, useEffect } from "react"
 import { useDispatch } from "react-redux";
 import { clearCollectionsErrors, thunkDeleteCollection, thunkUpdateCollectionName } from "../../redux/collection";
 import { NavLink } from "react-router-dom";
+import { FaRegFileImage } from "react-icons/fa";
 
 function CollectionCard({collection, setResponseMsg}){
   const [isEditing, setIsEditing] = useState(false);
@@ -59,27 +60,31 @@ function CollectionCard({collection, setResponseMsg}){
 
   return(
     <div className="collection-card" style={{backgroundColor:"white"}}>
-      <button onClick={handleDelete}>X</button>
-      <NavLink to={`/collections/${collection.id}/books`}>Test</NavLink>
-      {isEditing ?
-        <div>
-          <input
-          type="text"
-          ref={myRef}
-          value={collectionName}
-          onChange={handleInput}
-          onKeyDown={handleEnter}
-          autoFocus
-          />
-        </div>
-        :
-        <>
-          <button onClick={toggleEdit}>Edit</button>
-          <p>{collection.name}</p>
-        </>
-      }
-      {errors.collectionName && <p>{errors.collectionName.toString()}</p>}
-      <p>{collection.lang}</p>
+      <button onClick={handleDelete} className="delete-collection">X</button>
+      <NavLink to={`/collections/${collection.id}/books`} id="img-link">
+        {collection.books[0] ? <img src={collection.books[0].imgUrl} />:<FaRegFileImage id="no-image-icon"></FaRegFileImage>}
+      </NavLink>
+      <div className="collection-info">
+        {isEditing ?
+          <div>
+            <input
+            type="text"
+            ref={myRef}
+            value={collectionName}
+            onChange={handleInput}
+            onKeyDown={handleEnter}
+            autoFocus
+            />
+          </div>
+          :
+          <>
+            <button onClick={toggleEdit} id="edit-button">Edit Collection Name</button>
+            <p>{`Collection Name: ${collection.name}`}</p>
+          </>
+        }
+        {errors.collectionName && <p>{errors.collectionName.toString()}</p>}
+        <p>{`Language: ${collection.lang}`}</p>
+      </div>
     </div>
   )
 }

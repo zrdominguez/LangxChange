@@ -1,0 +1,44 @@
+.login-modal{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-content{
+  border-radius: 25% 10%;
+}
+
+.login-form{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 20rem;
+}
+
+.form-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  width: 8rem;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+
+.input-email{
+  width:9rem;
+  margin-left: 1.75rem;
+}
+
+.input-password{
+  margin-left: 4px;
+  width: 9rem;
+}
+
+.email-label{
+  margin-left: 2rem;
+}
+
+.password-label{
+  margin-left: 2rem;
+}

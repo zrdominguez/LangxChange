@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Review, Book
+from app.models import db, Review, Book, User
 from app.forms import EditReviewForm
 
 review_routes = Blueprint('reviews', __name__)
@@ -46,3 +46,20 @@ def remove_review(reviewId):
     return {'message': 'Review was successfully deleted!'}
   else:
     return {'message': 'Review could not be found!'}, 404
+
+
+@review_routes.route('/<int:reviewId>/users')
+def get_review_user(reviewId):
+  review = Review.query.get(reviewId)
+
+  if not review:
+    return {"error": "Review not found"}, 404
+
+  user = User.query.get(review.userId)
+
+  if not user:
+    return {"error": "User not found"}, 404
+
+  user = user.to_dict()
+
+  return {'username': user['username']}

@@ -6,9 +6,58 @@
 
 .details-section{
   display: flex;
+  justify-content: center;
+  gap:20px
 }
 
 .book-info-list{
   list-style: none;
   padding-left: 0;
+}
+
+.summary-title{
+  height: fit-content;
+  border-radius: 10px;
+}
+
+.summary-title h1{
+  text-align: center;
+}
+
+.summary-title p{
+  text-wrap: wrap;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#modal-buttons{
+  display: flex;
+  gap: 5px;
+}
+
+.book-info{
+  margin-left: 1rem;
+}
+
+.book-portrait{
+  background-color: darkgray;
+}
+
+.review-section{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-self: center;
+  width: 95%;
+}
+
+.review-section h2{
+  align-self: flex-start;
+}
+
+#review-list{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  align-self: flex-start;
 }

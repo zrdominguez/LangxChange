@@ -1,0 +1,41 @@
+.review-modal{
+  display:flex;
+  align-items: center;
+  flex-direction: column;
+  width: 20em;
+  height: fit-content;
+  max-width: none;
+}
+
+.review-form{
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.review-form h1{
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.review-form button{
+  align-self: center;
+  width: fit-content;
+  margin-bottom: 5px;
+}
+
+#review-label[for="review-input"]{
+  display: block;
+  margin-bottom: 5px;
+}
+
+#review-input{
+  width: 15rem; /* Adjust width as needed */
+  height: 3rem; /* Adjust height as needed */
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+
+.error-text{
+  color: red;
+}

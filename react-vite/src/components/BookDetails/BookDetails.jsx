@@ -35,9 +35,9 @@ function BookDetails(){
       <section className="details-section">
         <div className="book-portrait">
           <img src={book.imgUrl}/>
-          <div style={{backgroundColor:"darkgray"}}>
+          <div className="book-info">
             {user &&
-              <span>
+              <span id="modal-buttons">
                 <OpenModalButton
                 modalComponent={<AddBookModal bookId={book.id}/>}
                 buttonText={'Add to Collection'}
@@ -51,11 +51,11 @@ function BookDetails(){
               </span>
             }
             <ul className="book-info-list">
-              <li>{book.author}</li>
-              <li>{book.publisher}</li>
-              <li>{book.publishDate}</li>
+              <li>{`Author: ${book.author}`}</li>
+              <li>{`Publisher: ${book.publisher}`}</li>
+              <li>{`Released On: ${book.publishDate}`}</li>
               <li>
-                {book.genre && arrayToCommaSeparatedString(book.genre)}
+                {`Genres: ${book.genre && arrayToCommaSeparatedString(book.genre)}`}
               </li>
             </ul>
           </div>
@@ -66,9 +66,10 @@ function BookDetails(){
         </div>
       </section>
       <section className="review-section" style={{backgroundColor:"darkgray"}}>
-        <h2>Reviews</h2>
-        <ul>
-          {reviews && reviews.map(review => <ReviewList key={review.id} review={review}/>)}
+        <h2>Reviews: </h2>
+        <ul id="review-list">
+          {reviews && reviews.map(review => <ReviewList key={review.id} review={review}
+          owner={user ? user.id == review.userId : false}/>)}
         </ul>
       </section>
     </div>

@@ -6,6 +6,7 @@ import CreateCollectionModal from "../CreateCollectionModal"
 import OpenModalButton from "../OpenModalButton/OpenModalButton"
 import { useEffect } from "react"
 import { clearBooksErrors } from "../../redux/books"
+
 function AddBookModal({bookId}){
   const collections = useSelector(selectUserCollections)
   const dispatch = useDispatch()
@@ -15,7 +16,7 @@ function AddBookModal({bookId}){
   },[dispatch])
 
   return(
-    <div>
+    <div className="add-book-modal">
       {collections.length ? collections.map(collection =>
         <AddCollectionCard key={collection.id} collection={collection} bookId={bookId}/>
       ):

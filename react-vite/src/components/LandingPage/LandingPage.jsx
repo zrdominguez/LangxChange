@@ -26,8 +26,9 @@ function LandingPage(){
   },[])
   return (
     <div className="landing-page">
-      <div>
+      <div className="title-about-us">
         <h1 className="title">About Us</h1>
+        <p>We believe language learning shouldn't stop at textbooks. Our mission is to connect language enthusiasts with engaging and authentic reading material. We curate reviews of novels, short stories, and more, written in various languages, to help you discover captivating literature and expand your language horizons.</p>
       </div>
       <div className="slides-container">
         <FaArrowLeft id="left-arrow" onClick={()=>setCurrentSlide(curr => curr > 0 ? curr-1 : curr)}/>

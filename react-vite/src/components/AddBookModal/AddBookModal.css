@@ -1,0 +1,19 @@
+.add-book{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  border-style: solid;
+  border-color: chocolate;
+  width:6em;
+}
+
+.add-book-modal{
+  min-width: fit-content;
+  overflow-y: auto;
+  width: 10em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

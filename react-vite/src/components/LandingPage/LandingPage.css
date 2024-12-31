@@ -34,3 +34,19 @@
 #slide-title{
   text-align: center;
 }
+
+.title-about-us{
+  background-color: darkgray;
+  width: 40em;
+  border-radius: 10px;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 5px;
+}
+
+.title-about-us p{
+  margin-left: 2.75em;
+}
+
+.title{
+  text-align: center;
+}

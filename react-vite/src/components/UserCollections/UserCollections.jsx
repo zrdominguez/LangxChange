@@ -13,11 +13,11 @@ function UserCollection(){
 
   useEffect(() => {
     dispatch(thunkGetUserCollections())
-  },[dispatch, collections.length])
+  },[dispatch])
 
   return (
     <div className="user-collections">
-      <h2 style={{color:"white"}} >My Collections</h2>
+      <h1 style={{color:"white"}} >My Collections</h1>
       <div className="res-msg" onClick={()=>setResponseMsg({})}>
         {responseMsg?.message &&
         <p>{responseMsg.message}</p>

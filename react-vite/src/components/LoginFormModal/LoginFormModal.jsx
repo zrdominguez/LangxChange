@@ -13,6 +13,12 @@ function LoginFormModal() {
   const { closeModal } = useModal();
   const navigate = useNavigate()
 
+  const handleDemo = e => {
+    e.preventDefault()
+    dispatch(thunkLogin({credentials: "Demo", password: "password"}))
+    closeModal()
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -32,12 +38,13 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="login-modal">
       <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Email
+      <form onSubmit={handleSubmit} className="login-form">
+        <label className="email-label">
+          Email:
           <input
+            className="input-email"
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -45,9 +52,10 @@ function LoginFormModal() {
           />
         </label>
         {errors.credentials && <p>{errors.credentials}</p>}
-        <label>
-          Password
+        <label className="password-label">
+          Password:
           <input
+            className="input-password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
@@ -55,9 +63,12 @@ function LoginFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <button type="submit">Log In</button>
+        <span className="form-buttons">
+          <button type="submit">Log In</button>
+          <button className="demo-user" onClick={handleDemo}>Demo</button>
+        </span>
       </form>
-    </>
+    </div>
   );
 }
 
