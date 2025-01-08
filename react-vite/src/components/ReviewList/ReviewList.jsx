@@ -39,10 +39,10 @@ function ReviewList({review, owner}){
 
   return (
     <li className="review-items" style={{listStyle: 'none'}}>
-      {owner && <button onClick={handleDeleteReview} id="review-delete">X</button>}
+
       <span id="username-and-profile">
-        <FaUserCircle id="profile-icon"></FaUserCircle>
-        <p>{username.username}</p>
+        <p style={{display: 'flex', alignItems: 'center'}}><FaUserCircle id="profile-icon" style={{marginRight:'1em'}}></FaUserCircle>{username.username}</p>
+        {owner && <button onClick={handleDeleteReview} id="review-delete">X</button>}
       </span>
       <p>{`review: ${review.review}`}</p>
       <p style={{marginBottom:'.5em'}}>{`rating: ${review.rating}`}</p>

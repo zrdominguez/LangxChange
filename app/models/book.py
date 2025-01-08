@@ -17,14 +17,13 @@ class Book(db.Model):
   author = db.Column(db.String, nullable=False)
   genre = db.Column(db.JSON, nullable=False)
   avgRating = db.Column(db.Float, nullable=True)
-  difficulty = db.Column(db.String, nullable=False)
   imgUrl = db.Column(db.String, nullable=True)
   difficulty = db.Column(db.String, nullable=False)
   createdAt = db.Column(db.DateTime, default=datetime.now, nullable=False)
   updatedAt = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 
   reviews = db.relationship('Review', backref='book', cascade='all, delete-orphan')
-  collections = db.relationship('Collection', secondary=collections_books, back_populates='books', lazy='select')
+  collections = db.relationship('Collection', secondary=collections_books, back_populates='books')
 
   def calculate_avg_rating(self):
     #Calculates and updates the average rating based on related reviews.

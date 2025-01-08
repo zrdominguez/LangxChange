@@ -1,42 +1,23 @@
 import { useState, useEffect, useRef } from "react";
 import { NavLink } from "react-router-dom";
 
-function BooksButton() {
-  const [showMenu, setShowMenu] = useState(false);
+function BooksButton({isOpen, toggleMenu, closeMenu}) {
+
   const ulRef = useRef(null);
-
-
-  const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
-    setShowMenu(!showMenu);
-  };
-
-  useEffect(() => {
-    if (!showMenu) return;
-
-    const closeMenu = (e) => {
-      if (ulRef.current && !ulRef.current.contains(e.target)) {
-        setShowMenu(false);
-      }
-    };
-
-    document.addEventListener("click", closeMenu);
-
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
-
-  const closeMenu = () => setShowMenu(false);
 
   return (
     <>
-      <button onClick={toggleMenu}>
+      <button onClick={e => {
+        e.stopPropagation();
+        toggleMenu();
+      }}>
         <h3>Books</h3>
       </button>
-      {showMenu && (
+      {isOpen && (
         <ul className={"book-lang-dropdown"} ref={ulRef}>
-            <li><NavLink to={'/books/eng'} onClick={closeMenu}>English</NavLink></li>
-            <li><NavLink to={'/books/sp'} onClick={closeMenu}>Spanish</NavLink></li>
-            <li><NavLink to={'/books/jp'} onClick={closeMenu}>Japanese</NavLink></li>
+            <li><NavLink to={'/books/eng'} onClick={closeMenu} id="english-link">English</NavLink></li>
+            <li><NavLink to={'/books/sp'} onClick={closeMenu} id="spanish-link">Spanish</NavLink></li>
+            <li><NavLink to={'/books/jp'} onClick={closeMenu} id="japanese-link">Japanese</NavLink></li>
         </ul>
       )}
     </>

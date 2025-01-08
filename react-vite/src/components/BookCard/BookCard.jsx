@@ -22,8 +22,8 @@ function BookCard({book, collectionId = false}){
       {collectionId && <button onClick={handleDelete}>X</button>}
       <ul className='book-name-author'>
         <li style={{textWrap:'wrap'}}>{`${book.name}`}</li>
-        <li>{`Score: ${book.avgRating}  `}<FaStar style={{color:'gold'}}/></li>
-        <li>{`${book.author}`}</li>
+        <li>{`Score: ${book.avgRating ? book.avgRating : "--"}  `}<FaStar style={{color:'gold'}}/></li>
+        <li>{`by ${book.author}`}</li>
       </ul>
     </div>
   )

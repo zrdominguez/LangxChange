@@ -4,6 +4,7 @@ const CREATE_BOOK_REVIEW = `reviews/create_book_review`;
 const DELETE_REVIEW = 'reviews/delete_review';
 const REVIEW_ERRORS = 'reviews/review_errors';
 const CLEAR_ERRORS = 'reviews/clear_errors';
+const LOADING = 'reviews/loading';
 
 //action creators
 
@@ -41,9 +42,16 @@ export const clearReviewsErrors = () => (
   }
 )
 
+export const loading = () => (
+  {
+    type: LOADING
+  }
+)
+
 //thunk action creators
 export const thunkGetBookReviews = bookId => async dispatch => {
   try{
+    dispatch(loading())
     const res = await fetch(`/api/books/${bookId}/reviews`)
 
     if (res.ok) {
@@ -126,16 +134,26 @@ export const selectReviewsArray = createSelector(
 export const selectReviewErrors = createSelector(
   selectReviews, reviews => reviews.errors
 )
+export const selectReviewsLoading = createSelector(
+  selectReviews, reviews => reviews.loading
+)
 
 //reducer
 const initialState = {
   bookReviews:{},
   userReview:{},
-  errors:{}
+  errors:{},
+  loading:false,
 }
 
 function reviewsReducer(state = initialState, action){
   switch(action.type){
+    case LOADING: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
     case LOAD_BOOK_REVIEWS: {
       const {reviews} = action.reviews
       const bookReviews = {}
@@ -144,7 +162,8 @@ function reviewsReducer(state = initialState, action){
       }
       return {
         ...state,
-        bookReviews
+        bookReviews,
+        loading:false
       }
     }
     case CREATE_BOOK_REVIEW:{

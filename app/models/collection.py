@@ -14,7 +14,7 @@ class Collection(db.Model):
   createdAt = db.Column(db.DateTime, default=datetime.now, nullable=False)
   updatedAt = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now, nullable=False)
 
-  books = db.relationship('Book', secondary=collections_books, back_populates='collections', lazy='joined', cascade='all, delete')
+  books = db.relationship('Book', secondary=collections_books, back_populates='collections')
 
   def to_dict(self):
     return {

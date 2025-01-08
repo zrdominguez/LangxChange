@@ -63,7 +63,7 @@ def upgrade():
     sa.Column('createdAt', sa.DateTime(), nullable=False),
     sa.Column('updatedAt', sa.DateTime(), nullable=False),
     sa.ForeignKeyConstraint(['bookId'], ['books.id']),
-    sa.ForeignKeyConstraint(['collectionId'], ['collections.id'],),
+    sa.ForeignKeyConstraint(['collectionId'], ['collections.id']),
     sa.PrimaryKeyConstraint('bookId', 'collectionId')
     )
     op.create_table('reviews',

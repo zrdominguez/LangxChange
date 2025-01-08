@@ -10,8 +10,9 @@
   text-align: center;
   font-weight: bold;
   background-color: #14171c;
-  max-width: fit-content;
   justify-self: center;
+  width: 7em;
+  border-radius: 10px;
 }
 
 .book-list-column {

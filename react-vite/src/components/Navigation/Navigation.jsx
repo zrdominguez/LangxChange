@@ -3,8 +3,26 @@ import ProfileButton from "./ProfileButton";
 import "./Navigation.css";
 import BooksButton from "./BooksButton";
 import SearchBar from "./SearchBar";
+import { useState, useEffect } from "react";
 
 function Navigation() {
+  const [showMenu, setShowMenu] = useState(null);
+
+  const toggleMenu = menuName =>{
+    setShowMenu(curr => curr === menuName ? null : menuName)
+  }
+
+  const closeMenu = () => setShowMenu(null);
+
+  useEffect(() => {
+    const handleOutsideClick = (e) => {
+      closeMenu();
+    };
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, []);
 
   return (
     <nav>
@@ -15,9 +33,9 @@ function Navigation() {
 
         <li>
           <span className="middle-links">
-            <div><BooksButton /></div>
+            <div><BooksButton isOpen={showMenu === 'books'} toggleMenu={()=> toggleMenu("books")} closeMenu={closeMenu}/></div>
             <button><h3>Community</h3></button>
-            <div><ProfileButton /></div>
+            <div><ProfileButton isOpen={showMenu === 'profile'} toggleMenu={()=> toggleMenu("profile")} closeMenu={closeMenu}/></div>
           </span>
         </li>
 

@@ -1,13 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
 import { selectBookDetails, thunkGetBookById } from "../../redux/books"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
+import {Hourglass} from 'react-loader-spinner';
 
 import "./BookDetails.css"
 import ReviewList from "../ReviewList"
 import OpenModalButton from "../OpenModalButton/OpenModalButton"
 import ReviewModal from "../ReviewModal/ReviewModal"
-import { clearReviewsErrors, selectReviewsArray, thunkGetBookReviews } from "../../redux/reviews"
+import { clearReviewsErrors, selectReviewsArray, selectReviewsLoading, thunkGetBookReviews } from "../../redux/reviews"
 import { selectCurrentUser } from "../../redux/session"
 import AddBookModal from "../AddBookModal"
 import { clearCollectionsErrors } from "../../redux/collection"
@@ -24,11 +25,29 @@ function BookDetails(){
   const dispatch = useDispatch()
   const {bookId} = useParams()
   const user = useSelector(selectCurrentUser)
+  const loadingReviews = useSelector(selectReviewsLoading)
+  const [showReview, setShowReview] = useState(true)
 
   useEffect(() => {
     dispatch(thunkGetBookById(bookId))
     dispatch(thunkGetBookReviews(bookId))
   },[dispatch, bookId])
+
+  useEffect(() => {
+    if(reviews){
+      reviews.find(review => review.userId === user.id) ? setShowReview(false) : setShowReview(true)
+    }
+  }, [reviews, user])
+
+
+
+  if(loadingReviews){
+    return(
+      <div style={{display:'flex', justifyContent:'center', marginTop:'10em'}}>
+        {loadingReviews && <Hourglass />}
+      </div>
+    )
+  }
 
   return(
     <div className="book-details-page">
@@ -43,11 +62,13 @@ function BookDetails(){
                 buttonText={'Add to Collection'}
                 onModalClose={() => dispatch(clearCollectionsErrors())}
                 />
+                { showReview &&
                 <OpenModalButton
                   modalComponent={<ReviewModal bookId={bookId}/>}
                   buttonText={'Review'}
                   onModalClose={() => dispatch(clearReviewsErrors())}
                 />
+                }
               </span>
             }
             <ul className="book-info-list">
@@ -60,17 +81,19 @@ function BookDetails(){
             </ul>
           </div>
         </div>
-        <div className="summary-title" style={{backgroundColor:"darkgray"}}>
-          <h1>{book.name}</h1>
-          <p>{book.summary}</p>
+        <div className="summary-reviews">
+          <section className="summary-section" style={{backgroundColor:"darkgray"}}>
+            <h1>{book.name}</h1>
+            <p>{book.summary}</p>
+          </section>
+          <section className="review-section" style={{backgroundColor:"darkgray"}}>
+            <h2>Reviews: </h2>
+            <ul id="review-list">
+              {reviews && reviews.map(review => <ReviewList key={review.id} review={review}
+              owner={user ? user.id == review.userId : false}/>)}
+            </ul>
+          </section>
         </div>
-      </section>
-      <section className="review-section" style={{backgroundColor:"darkgray"}}>
-        <h2>Reviews: </h2>
-        <ul id="review-list">
-          {reviews && reviews.map(review => <ReviewList key={review.id} review={review}
-          owner={user ? user.id == review.userId : false}/>)}
-        </ul>
       </section>
     </div>
   )

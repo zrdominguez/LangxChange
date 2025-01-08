@@ -6,6 +6,9 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 2rem;
+  border-radius: 5px;
+  background-color: #fff; /* Default background color */
+  transition: background-color 0.3s ease; /* Smooth transition for 0.3 seconds */
 }
 
 .book-card img{
@@ -13,6 +16,15 @@
   min-width: none;
   min-height: none;
   padding-top: 10px;
+}
+
+.book-card img:hover{
+  cursor: pointer;
+}
+
+.book-card:hover{
+  background-color: rgba(255, 255, 255, 0.8); /* Slightly transparent white */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle box shadow */
 }
 
 .book-name-author{
