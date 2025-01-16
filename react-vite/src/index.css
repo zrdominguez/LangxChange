@@ -1,5 +1,18 @@
 /* TODO: Add sitewide styles */
 body{
-  background-image:url('https://zechariahdbucket.s3.us-east-2.amazonaws.com/background-image.jpg');
-  background-size: 33.3%;
+  background: linear-gradient(135deg, #0b0d10, #1e2b35, #f57c00);
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+#root{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensures full viewport height */
+  margin: 0;
 }

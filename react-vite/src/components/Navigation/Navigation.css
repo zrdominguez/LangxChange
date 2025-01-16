@@ -27,10 +27,11 @@
   border-style: none;
   padding: 0 10px 0 10px;
   color: #f2a661;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
 }
 
 .middle-links button:hover{
-  transform: scale(1.2);
+  text-shadow: 0 0 10px #f57c00, 0 0 20px #f57c00;
   cursor: pointer;
 }
 
@@ -70,15 +71,10 @@
   width: 5em;
   transform: translateX(-25px);
   border: solid black 1px;
-  top: 4.8em;
-}
-
-.book-lang-dropdown li{
-  color: whitesmoke
+  top: 5em;
 }
 
 .book-lang-dropdown li:hover{
-  color: #129298;
   cursor: pointer;
   transform: scale(1.1);
 }

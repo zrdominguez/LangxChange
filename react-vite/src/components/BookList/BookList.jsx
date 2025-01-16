@@ -4,6 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { selectBooksByLanguage, thunkGetBooksByLanguage } from "../../redux/books";
 import BookCard from "../BookCard";
 import "./BookList.css"
+import { Hourglass } from "react-loader-spinner";
 
 const allowedLang = {'eng':'English', 'jp':'Japanese', 'sp':'Spanish'}
 
@@ -20,6 +21,10 @@ function BookList(){
       dispatch(thunkGetBooksByLanguage(lang))
     }
   },[dispatch, lang, navigate])
+
+  if(!books){
+    return <Hourglass />
+  }
 
   return(
     <div className='book-list-page'>

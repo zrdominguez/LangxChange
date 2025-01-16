@@ -3,7 +3,10 @@ import { Outlet } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ModalProvider, Modal } from "../context/Modal";
 import { thunkAuthenticate } from "../redux/session";
+import Footer from "../components/Footer"
 import Navigation from "../components/Navigation/Navigation";
+import ScrollToTop from "../components/ScrollToTheTop";
+import {Hourglass} from 'react-loader-spinner';
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -15,8 +18,10 @@ export default function Layout() {
   return (
     <>
       <ModalProvider>
+        <ScrollToTop />
         <Navigation />
-        {isLoaded && <Outlet />}
+        {isLoaded ? <Outlet /> : <Hourglass />}
+        <Footer />
         <Modal />
       </ModalProvider>
     </>

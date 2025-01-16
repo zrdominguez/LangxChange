@@ -5,11 +5,9 @@
 }
 
 #left-arrow{
-  padding-right: 2em;
 }
 
 #right-arrow{
-  padding-left: 2em
 }
 
 #left-arrow:hover, #right-arrow:hover{
@@ -19,7 +17,8 @@
 .landing-page{
   display: flex;
   flex-direction: column;
-  align-items: center;
+  flex: 1;
+  gap: 6em;
 }
 
 .title{
@@ -29,6 +28,28 @@
 .slides-container{
   display: flex;
   justify-content: center;
+  width:30em;
+  flex-grow: 1;
+  align-self: center;
+  gap: 2em;
+}
+
+.img-slide-container{
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 5em;
+}
+
+.img-slide-container img{
+  max-width: 100%;
+  max-height: 100%;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.img-slide-container :hover{
+  transform: scale(1.1);
+  box-shadow: 0 8px 15px rgba(255, 165, 0, 0.8);
 }
 
 #slide-title{
@@ -36,15 +57,12 @@
 }
 
 .title-about-us{
-  background-color: darkgray;
-  width: 40em;
+  /* background-color: black; */
+  padding-left: 15em;
+  padding-right: 15em;
   border-radius: 10px;
   font-family: 'Playfair Display', serif;
   margin-bottom: 5px;
-}
-
-.title-about-us p{
-  margin-left: 2.75em;
 }
 
 .title{

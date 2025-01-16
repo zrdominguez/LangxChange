@@ -34,7 +34,7 @@ function BookDetails(){
   },[dispatch, bookId])
 
   useEffect(() => {
-    if(reviews){
+    if(reviews && user){
       reviews.find(review => review.userId === user.id) ? setShowReview(false) : setShowReview(true)
     }
   }, [reviews, user])
@@ -43,7 +43,7 @@ function BookDetails(){
 
   if(loadingReviews){
     return(
-      <div style={{display:'flex', justifyContent:'center', marginTop:'10em'}}>
+      <div style={{display:'flex', justifyContent:'center', marginTop:'10em', marginBottom:'10em'}}>
         {loadingReviews && <Hourglass />}
       </div>
     )
