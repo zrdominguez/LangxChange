@@ -1,18 +1,3 @@
-#left-arrow, #right-arrow{
-  color: white;
-  align-self:  center;
-  font-size: 3em;
-}
-
-#left-arrow{
-}
-
-#right-arrow{
-}
-
-#left-arrow:hover, #right-arrow:hover{
-  transform: scale(1.2);
-}
 
 .landing-page{
   display: flex;
@@ -58,11 +43,15 @@
 
 .title-about-us{
   /* background-color: black; */
-  padding-left: 15em;
-  padding-right: 15em;
+  padding-left: 25em;
+  padding-right: 25em;
   border-radius: 10px;
   font-family: 'Playfair Display', serif;
   margin-bottom: 5px;
+}
+
+.title-about-us p{
+  margin-left: 5em;
 }
 
 .title{

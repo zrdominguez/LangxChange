@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+#modal-content{
+  background-color: rgb(99, 97, 97);
+}
+
 .create-form{
   display: flex;
   flex-direction: column;

@@ -59,10 +59,10 @@ function CollectionCard({collection, setResponseMsg}){
 
 
   return(
-    <div className="collection-card" style={{backgroundColor:"white"}}>
+    <div className="collection-card">
       <button onClick={handleDelete} className="delete-collection">X</button>
       <NavLink to={`/collections/${collection.id}/books`} id="img-link">
-        {collection.books[0] ? <img src={collection.books[0].imgUrl} />:<FaRegFileImage id="no-image-icon"></FaRegFileImage>}
+        {collection.books[0] ? <img src={collection.books[0].imgUrl}/>:<FaRegFileImage id="no-image-icon"></FaRegFileImage>}
       </NavLink>
       <div className="collection-info">
         {isEditing ?
@@ -84,6 +84,7 @@ function CollectionCard({collection, setResponseMsg}){
         }
         {errors.collectionName && <p>{errors.collectionName.toString()}</p>}
         <p>{`Language: ${collection.lang}`}</p>
+        <p>{`Books: ${collection.bookCount}`}</p>
       </div>
     </div>
   )

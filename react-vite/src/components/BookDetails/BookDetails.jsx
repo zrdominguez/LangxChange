@@ -50,7 +50,7 @@ function BookDetails(){
   }
 
   return(
-    <div className="book-details-page">
+    <div className="book-details-page" style={{marginBottom: '2em'}}>
       <section className="details-section">
         <div className="book-portrait">
           <img src={book.imgUrl}/>
@@ -82,11 +82,11 @@ function BookDetails(){
           </div>
         </div>
         <div className="summary-reviews">
-          <section className="summary-section" style={{backgroundColor:"darkgray"}}>
+          <section className="summary-section" >
             <h1>{book.name}</h1>
             <p>{book.summary}</p>
           </section>
-          <section className="review-section" style={{backgroundColor:"darkgray"}}>
+          <section className="review-section" >
             <h2>Reviews: </h2>
             <ul id="review-list">
               {reviews && reviews.map(review => <ReviewList key={review.id} review={review}

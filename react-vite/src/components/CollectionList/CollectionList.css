@@ -1,0 +1,20 @@
+.book-list-column h2{
+  text-align: center;
+  color: #f2a661;
+  margin-top: 21.44px;
+  margin-bottom: 1em;
+}
+
+#delete-button{
+  background-color: #c91717;
+  width: fit-content;
+  box-shadow: black;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 2rem;
+}
+
+#delete-button:hover{
+  background-color: #950b0b;
+  cursor: pointer;
+}

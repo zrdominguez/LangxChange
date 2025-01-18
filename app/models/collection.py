@@ -17,10 +17,17 @@ class Collection(db.Model):
   books = db.relationship('Book', secondary=collections_books, back_populates='collections')
 
   def to_dict(self):
+    total_count = (
+      db.session.query(db.func.sum(collections_books.c.count))
+      .filter(collections_books.c.collectionId == self.id)
+      .scalar() or 0
+    )
+
     return {
       'id': self.id,
       'name': self.name,
       'userId': self.userId,
       'lang': self.lang,
+      'bookCount': total_count,
       'books': [book.to_dict() for book in self.books]
     }

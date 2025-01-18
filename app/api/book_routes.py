@@ -8,18 +8,28 @@ book_routes = Blueprint('books', __name__)
 #The only Languages of books for now
 LANGUAGES = {'eng':'English', 'jp':'Japanese', 'sp':'Spanish'}
 
+#Acceptable difficulties
+DIFFICULTY = {'beg':'Beginner', 'int':'Intermediate', 'conv':'Conversational', 'nat':'Native'}
+
 #Helper Function to see if a User already Reviewed a Book
 def check_if_review_exists(book):
   reviews = [review.to_dict() for review in current_user.reviews if review.bookId == book.id]
   return len(reviews) > 0
 
 #GET All Books by language
-@book_routes.route('/<string:lang>')
-def books(lang):
+@book_routes.route('/<string:lang>', defaults={'dif': None})
+@book_routes.route('/<string:lang>/<string:dif>')
+def books(lang, dif):
   if lang not in LANGUAGES:
     return {'error': f'Language "{lang}" is not supported.'}, 400
   lang = LANGUAGES[lang]
-  books = Book.query.filter(Book.lang == lang).all()
+  if dif :
+    if dif not in DIFFICULTY:
+      return {'error': f'Difficulty "{dif}" is not supported.'}, 400
+    dif = DIFFICULTY[dif]
+    books = Book.query.filter(Book.lang == lang, Book.difficulty == dif).all()
+  else :
+    books = Book.query.filter(Book.lang == lang).all()
   for book in books:
     book.calculate_avg_rating()
   return {'books':[book.to_dict() for book in books]}
@@ -32,6 +42,7 @@ def book_details(bookId):
     return book.to_dict_details()
   else:
     return {"message": "Book not found!"}, 404
+
 
 #GET all reviews of a book
 @book_routes.route('/<int:bookId>/reviews')

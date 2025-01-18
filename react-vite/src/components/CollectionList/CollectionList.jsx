@@ -26,7 +26,7 @@ function CollectionList(){
   return(
     <div className='book-list-page'>
       <div className="book-list-column">
-        <h1>{`${collection?.name}`}</h1>
+        <h2>{`${collection?.name}`}</h2>
         {books.length > 0 &&
           books.map(book =>
             <BookCard key={book.id} book={book} collectionId={collectionId}/>

@@ -58,4 +58,5 @@ class Book(db.Model):
       'genre': self.genre,
       'avgRating': self.avgRating,
       'imgUrl': self.imgUrl,
+      'difficulty': self.difficulty,
     }

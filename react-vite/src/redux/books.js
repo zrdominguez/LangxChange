@@ -7,7 +7,7 @@ const REMOVE_BOOK_FROM_COLLECTION = 'collections/remove_book_from_collection';
 const BOOK_ERRORS = 'books/book_errors';
 const CLEAR_ERRORS = 'books/clear_errors';
 const ADD_BOOK_TO_COLLECTION = 'books/add_books_to_collection';
-
+const LOAD_BOOKS = 'books/load_books';
 //action creators
 
 export const loadBooksByLanguage = books => (
@@ -58,10 +58,17 @@ export const clearBooksErrors = () => (
   }
 )
 
+export const loadBooks = () => (
+  {
+    type: LOAD_BOOKS
+  }
+)
+
 //thunk action creators
-export const thunkGetBooksByLanguage = lang => async dispatch => {
+export const thunkGetBooksByLanguage = (lang, diff = null) => async dispatch => {
+  dispatch(loadBooks());
   try{
-    const res = await fetch(`/api/books/${lang}`)
+    const res = diff ? await fetch(`/api/books/${lang}/${diff}`) :await fetch(`/api/books/${lang}`)
 
     if (res.ok) {
       const books = await res.json()
@@ -83,6 +90,7 @@ export const thunkGetBooksByLanguage = lang => async dispatch => {
 }
 
 export const thunkGetCollectionBooks = collectionId => async dispatch => {
+  dispatch(loadBooks())
   try{
     const res = await fetch(`/api/collections/${collectionId}/books`)
     if (res.ok) {
@@ -105,6 +113,7 @@ export const thunkGetCollectionBooks = collectionId => async dispatch => {
 }
 
 export const thunkGetBookById = bookId => async dispatch => {
+  dispatch(loadBooks())
   try{
     const res = await fetch(`/api/books/${bookId}`)
     if (res.ok) {
@@ -127,6 +136,7 @@ export const thunkGetBookById = bookId => async dispatch => {
 }
 
 export const thunkRemoveBookFromCollection = (collectionId, bookId) => async dispatch => {
+  dispatch(loadBooks())
   try{
     const res = await fetch(`/api/collections/${collectionId}/books`,
       {
@@ -191,6 +201,9 @@ export const selectBookDetails = createSelector(selectBooks, books => books.book
 export const selectBookReviews = createSelector(selectBooks, books => books.bookDetails.reviews)
 export const selectCollectionBooks = createSelector(selectBooks, books => books.collectionBooks)
 export const selectBookErrors = createSelector(selectBooks, books => books.errors)
+export const selectBooksLoading = createSelector(
+  selectBooks, books => books.loading
+)
 
 //reducer
 const initialState = {
@@ -198,6 +211,7 @@ const initialState = {
   bookDetails:{},
   collectionBooks:[],
   errors:{},
+  loading: false
 }
 
 function booksReducer(state = initialState, action){
@@ -219,7 +233,8 @@ function booksReducer(state = initialState, action){
       const {book} = action
       return {
         ...state,
-        bookDetails: book
+        bookDetails: book,
+        loading: false,
       }
     }
     case LOAD_COLLECTION_BOOKS:{
@@ -227,13 +242,15 @@ function booksReducer(state = initialState, action){
       console.log(action.books)
       return{
         ...state,
-        collectionBooks: books
+        collectionBooks: books,
+        loading: false,
       }
     }
     case REMOVE_BOOK_FROM_COLLECTION:{
       const { bookId } = action
       const copyState = {...state}
       copyState.collectionBooks = copyState.collectionBooks.filter(book => book.id != bookId)
+      copyState.loading = false
       return copyState
     }
     case ADD_BOOK_TO_COLLECTION:{
@@ -253,6 +270,12 @@ function booksReducer(state = initialState, action){
       return {
         ...state,
         errors:{}
+      }
+    }
+    case LOAD_BOOKS:{
+      return {
+        ...state,
+        loading: true
       }
     }
     default:

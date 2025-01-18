@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom"
-import { selectBooksByLanguage, thunkGetBooksByLanguage } from "../../redux/books";
+import { selectBooksByLanguage, selectBooksLoading, thunkGetBooksByLanguage } from "../../redux/books";
 import BookCard from "../BookCard";
 import "./BookList.css"
 import { Hourglass } from "react-loader-spinner";
@@ -13,6 +13,7 @@ function BookList(){
   const { lang } = useParams();
   const navigate = useNavigate();
   const books = Object.values(useSelector(selectBooksByLanguage))
+  const loadingBooks = useSelector(selectBooksLoading)
 
   useEffect(()=>{
     if (!(lang in allowedLang)){
@@ -22,9 +23,12 @@ function BookList(){
     }
   },[dispatch, lang, navigate])
 
-  if(!books){
-    return <Hourglass />
-  }
+  if(loadingBooks)
+    return (
+      <div style={{display:'flex', justifyContent:'center', marginTop:'10em', marginBottom:'10em'}}>
+        <Hourglass />
+      </div>
+    )
 
   return(
     <div className='book-list-page'>

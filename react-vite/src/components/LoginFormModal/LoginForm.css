@@ -3,10 +3,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
 }
 
 #modal-content{
   border-radius: 25% 10%;
+  background-color: darkgrey;
 }
 
 .login-form{
@@ -27,7 +29,7 @@
 
 .input-email{
   width:9rem;
-  margin-left: 1.75rem;
+  margin-left: 2.15rem;
 }
 
 .input-password{

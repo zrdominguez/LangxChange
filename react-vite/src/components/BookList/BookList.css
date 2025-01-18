@@ -9,7 +9,6 @@
   color: #f2a661;
   text-align: center;
   font-weight: bold;
-  background-color: #14171c;
   justify-self: center;
   width: 7em;
   border-radius: 10px;
@@ -17,14 +16,14 @@
 
 .book-list-column {
   flex: 1 1 0px;
-  padding-left: 10rem;
+  padding-left: 15rem;
 }
 
 .genre-selection {
   position: sticky;
   top: 20px;
   width: 200px;
-  background-color: #f4f4f4;
+  background-color: #14171c;
   padding: 15px;
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -42,7 +41,7 @@
 .genre-item {
   margin: 10px 0;
   padding: 10px;
-  background-color: #e0e0e0;
+  background-color: darkgrey;
   border-radius: 5px;
   cursor: pointer;
   list-style: none;

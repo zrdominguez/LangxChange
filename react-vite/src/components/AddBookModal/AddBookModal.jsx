@@ -21,7 +21,7 @@ function AddBookModal({bookId}){
         <AddCollectionCard key={collection.id} collection={collection} bookId={bookId}/>
       ):
       <div id="create-collection">
-        <h1 style={{color:"black"}}>No Collections</h1>
+        <h1 id='no-collection' style={{color:"white"}}>No Collections</h1>
         <OpenModalButton
           buttonText="+"
           modalComponent={<CreateCollectionModal />}

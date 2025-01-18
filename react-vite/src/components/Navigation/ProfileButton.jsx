@@ -33,7 +33,7 @@ function ProfileButton({isOpen, toggleMenu, closeMenu}) {
           {user ? (
             <>
               <li>
-                <NavLink to={`/users/${user.id}/${user.username}/collections`} onClick={closeMenu}>{user.username}</NavLink>
+                <NavLink id="username-link" to={`/users/${user.id}/${user.username}/collections`} onClick={closeMenu}>{user.username}</NavLink>
               </li>
               <li>
                 <button id="logout-btn" onClick={logout}>Log Out</button>
