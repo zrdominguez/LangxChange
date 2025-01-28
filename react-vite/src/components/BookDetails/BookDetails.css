@@ -6,6 +6,7 @@
 
 .details-section{
   display: flex;
+  align-items: flex-start;
   justify-content: center;
   gap:20px
 }
@@ -16,6 +17,7 @@
 }
 
 .summary-reviews{
+  flex: 2;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -49,7 +51,16 @@
 
 .book-portrait{
   /* background-color: darkgray; */
+  max-width: 300px;
+  flex: 1;
   border-radius: 5px;
+  text-align: center;
+}
+
+.book-portrait img{
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .review-section{
