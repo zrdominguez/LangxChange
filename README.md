@@ -41,56 +41,11 @@ https://langxchange.onrender.com
 
 ### Collection Page
 
-<img src="https://github.com/Savsou/BopStop/blob/dev/assets/ezgif-7-5d1373d8c7.gif" alt="Demo Animation" width="830">
+<img src="https://github.com/user-attachments/assets/b5e4c56e-b8df-44de-b0d3-2e31578a0e2e" alt="Demo Animation" width="830">
 
 ### Book Details
-<img src="https://github.com/Savsou/BopStop/blob/dev/assets/ezgif-7-705fde165c.gif" alt="Demo Animation" width="830">
+<img src="https://github.com/user-attachments/assets/b44bb780-fc0e-455f-92be-24d877f3ffb9" alt="Demo Animation" width="830">
 
-## Getting started
-
-1. Clone this repository (only this branch).
-
-2. Install dependencies.
-
-   ```bash
-   pipenv install -r requirements.txt
-   ```
-
-3. Create a __.env__ file based on the example with proper settings for your
-   development environment.
-
-4. Make sure the SQLite3 database connection URL is in the __.env__ file.
-
-5. This starter organizes all tables inside the `flask_schema` schema, defined
-   by the `SCHEMA` environment variable.  Replace the value for
-   `SCHEMA` with a unique name, **making sure you use the snake_case
-   convention.**
-
-6. Get into your pipenv, migrate your database, seed your database, and run your
-   Flask app:
-
-   ```bash
-   pipenv shell
-   ```
-
-   ```bash
-   flask db upgrade
-   ```
-
-   ```bash
-   flask seed all
-   ```
-
-   ```bash
-   flask run
-   ```
-
-7. To run the React frontend in development, `cd` into the __react-vite__
-   directory and run `npm i` to install dependencies. Next, run `npm run build`
-   to create the `dist` folder. The starter has modified the `npm run build`
-   command to include the `--watch` flag. This flag will rebuild the __dist__
-   folder whenever you change your code, keeping the production version up to
-   date.
 
 # Feature List
    1. Users
