@@ -33,11 +33,11 @@ https://langxchange.onrender.com
 
 ### Landing Page
 
-<img src="https://github.com/Savsou/BopStop/blob/dev/assets/ezgif-7-02ffb16eda.gif" alt="Demo Animation" width="830">
+<img src="https://github.com/user-attachments/assets/1da32ace-1f4a-487b-8985-3196b9cfa946" alt="Demo Animation" width="830">
 
 ### Book List
 
-<img src="https://github.com/Savsou/BopStop/blob/dev/assets/ezgif-7-95f306527d.gif" alt="Demo Animation" width="830">
+<img src="https://github.com/user-attachments/assets/bf9532fb-c5ba-4bdf-a56b-ef965e949684" alt="Demo Animation" width="830">
 
 ### Collection Page
 
