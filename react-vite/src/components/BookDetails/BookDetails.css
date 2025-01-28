@@ -86,4 +86,7 @@
   align-items: flex-start;
   align-self: flex-start;
   padding: 0 1em 0 1em;
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
 }
