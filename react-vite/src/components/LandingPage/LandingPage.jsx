@@ -18,7 +18,7 @@ function LandingPage(){
       </div>
       <div className="slides-container">
 
-        {LANGUAGE_IMAGES.map(info => <LanguageSlide slideInfo={info} />)}
+        {LANGUAGE_IMAGES.map((info, index) => <LanguageSlide key={index} slideInfo={info} />)}
 
       </div>
     </div>

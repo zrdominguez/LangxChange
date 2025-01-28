@@ -1,4 +1,4 @@
-export function HoverDifficulty({lang, ref, isOpen = false}){
+export function HoverDifficulty({ref, isOpen = false}){
   return(
     <>
       {isOpen &&

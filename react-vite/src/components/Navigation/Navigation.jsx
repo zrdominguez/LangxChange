@@ -5,7 +5,6 @@ import BooksButton from "./BooksButton";
 import SearchBar from "./SearchBar";
 import { useState, useEffect } from "react";
 
-const DIFFICULTY = {'Beginner':'beg', 'Intermediate':'int', 'Conversational':'conv', 'Native':'nat'}
 
 function Navigation() {
   const [showMenu, setShowMenu] = useState(null);
@@ -17,7 +16,7 @@ function Navigation() {
   const closeMenu = () => setShowMenu(null);
 
   useEffect(() => {
-    const handleOutsideClick = (e) => {
+    const handleOutsideClick = () => {
       closeMenu();
     };
 
