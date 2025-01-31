@@ -26,7 +26,6 @@ function AddCollectionCard({collection, bookId}){
       <p>{collection.name}</p>
       <button
       onClick={handleAddBook}
-      style={{width:'fit-content'}}
       >+</button>
     </div>
   )
